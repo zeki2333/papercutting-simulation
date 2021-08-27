@@ -1,0 +1,14 @@
+<RCC>
+    <qresource prefix="/icon">
+        <file>E:/ENTERTAIN/Picture/icon/create.png</file>
+        <file>E:/ENTERTAIN/Picture/icon/create_s.png</file>
+        <file>E:/ENTERTAIN/Picture/icon/file.png</file>
+        <file>E:/ENTERTAIN/Picture/icon/file_s.png</file>
+        <file>E:/ENTERTAIN/Picture/icon/help.png</file>
+        <file>E:/ENTERTAIN/Picture/icon/help_s.png</file>
+        <file>E:/ENTERTAIN/Picture/icon/out.png</file>
+        <file>E:/ENTERTAIN/Picture/icon/out_s.png</file>
+        <file>E:/ENTERTAIN/Picture/icon/sim.png</file>
+        <file>E:/ENTERTAIN/Picture/icon/sim_s.png</file>
+    </qresource>
+</RCC>
