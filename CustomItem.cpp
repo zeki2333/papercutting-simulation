@@ -1,9 +1,19 @@
+/**
+* @projectName   simulation
+* @brief         自定义图元组件的函数实现
+* @author        Zeki
+* @date          2021-09-05
+*/
 #include "CustomItem.h"
 #include <QDebug>
 #include <QPainter>
 #include <QCursor>
 #include <QPen>
 #include <QtMath>
+#include <QVector2D>
+#include <QVector3D>
+
+#define PI 3.14159265358979
 
 QImage CustomItem::m_closeIcon;
 QImage CustomItem::m_resizeIcon;
@@ -20,12 +30,20 @@ CustomItem::CustomItem()
 
     this->setFlag(QGraphicsItem::ItemIsSelectable);
     initIcon();
+    m_size.setWidth(pix.width());
+    m_size.setHeight(pix.height());
 }
 
+/**
+ * @brief getDistance
+ * @param Start
+ * @param End
+ * @return the distance between the start point and end point
+ */
 qreal getDistance(QPointF Start,QPointF End)
 {
-    qreal delta_x = Start.x()-End.x();
-    qreal delta_y = Start.y()-End.y();
+    qreal delta_x = Start.x() - End.x();
+    qreal delta_y = Start.y() - End.y();
     return qSqrt(delta_x*delta_x + delta_y*delta_y);
 
 }
@@ -34,22 +52,12 @@ void CustomItem::paint(QPainter *painter, const QStyleOptionGraphicsItem *option
 {
     Q_UNUSED(option);
     Q_UNUSED(widget);
-    /*
-    qDebug() << "CustomItem::paint";
-    if(hasFocus()) {
-        painter->setPen(QPen(QColor(0,0,255,200)));
-    } else {
-        painter->setPen(QPen(QColor(255,100,100,100)));
-    }
-    painter->setBrush(color);
-    //painter->drawRect(-10, -10, 30, 30);
-    */
 
     painter->setRenderHint(QPainter::Antialiasing, true);
     painter->setRenderHint(QPainter::SmoothPixmapTransform, true);
     painter->setRenderHint(QPainter::TextAntialiasing, true);
 
-    painter->drawPixmap(QPoint(-pix.width()/2,-pix.height()/2),pix,QRect(0,0,pix.width(),pix.height()));
+    painter->drawPixmap(QPoint(-m_size.width()/2,-m_size.height()/2),pix.scaled(m_size.width(),m_size.height(),Qt::KeepAspectRatio),QRect(0,0,m_size.width(),m_size.height()));
 
     if(!this->isSelected())
         return;
@@ -60,11 +68,13 @@ void CustomItem::paint(QPainter *painter, const QStyleOptionGraphicsItem *option
     pen.setStyle(Qt::DashLine);
     painter->setPen(pen);
 
-    QRectF outLineRect = getCustomRect();
+    QRectF itemRect = getCustomRect();
+    QRectF outLineRect = itemRect.adjusted(-m_nInterval, -m_nInterval, m_nInterval, m_nInterval);
+
     painter->drawRect(outLineRect);
 
     painter->setPen(Qt::NoPen);
-    painter->setBrush(QColor("00A19D"));
+    painter->setBrush(QColor(Qt::transparent));
 
     //绘制控制点
     painter->drawEllipse(outLineRect.topRight(),m_nEllipseWidth,m_nEllipseWidth);
@@ -84,9 +94,12 @@ void CustomItem::paint(QPainter *painter, const QStyleOptionGraphicsItem *option
             painter->drawPixmap(QRect(outLineRect.bottomRight().x() - m_nEllipseWidth / 2, \
                                       outLineRect.bottomRight().y() - m_nEllipseWidth / 2, \
                                       m_nEllipseWidth, m_nEllipseWidth), m_resizePixmap);
-
 }
 
+/**
+ * @brief CustomItem::boundingRect
+ * @return return a rect that has two interval-space when being selected or return the origin rect
+ */
 QRectF CustomItem::boundingRect() const
 {
     QRectF rectF = getCustomRect();
@@ -113,6 +126,8 @@ void CustomItem::mousePressEvent(QGraphicsSceneMouseEvent *event)
     qDebug()<<getDistance(pos,outLineRect.bottomRight());
     if(itemRect.contains(pos))
         m_itemOper = t_move;
+    else if(getDistance(pos,outLineRect.topRight()) <= m_nEllipseWidth)
+        m_itemOper = t_close;
     else if(getDistance(pos,outLineRect.bottomLeft()) <= m_nEllipseWidth)
         m_itemOper = t_rotate;
     else if(getDistance(pos,outLineRect.bottomRight()) <= m_nEllipseWidth)
@@ -157,6 +172,8 @@ void CustomItem::mouseReleaseEvent(QGraphicsSceneMouseEvent *event)
 {
     Q_UNUSED(event);
     qDebug() << "CustomItem::mouseReleaseEvent";
+    if(m_itemOper == t_close)
+        delete this;
     m_itemOper = t_none;
     return QGraphicsItem::mouseReleaseEvent(event);
 }
@@ -168,19 +185,21 @@ QPainterPath CustomItem::shape() const
     return path;
 }
 
+/**
+ * @brief CustomItem::getCustomRect
+ * @return a rect that fits the shape of the icon
+ */
 QRectF CustomItem::getCustomRect() const
 {
-    /*QRectF rect = boundingRect();
-    rect.adjust(m_nEllipseWidth,m_nEllipseWidth,-m_nEllipseWidth,-m_nEllipseWidth);
-    return rect;*/
-
     QPointF centerPos(0, 0);
-    return QRectF(centerPos.x() - pix.width() / 2, centerPos.y() - pix.height() / 2, \
-                  pix.width(), pix.height());
+    return QRectF(centerPos.x() - m_size.width() / 2, centerPos.y() - m_size.height() / 2, \
+                  m_size.width(), m_size.height());
 }
 
 void CustomItem::mouseMoveMoveOperator(const QPointF &scenePos, const QPointF &loacalPos)
 {
+    Q_UNUSED(loacalPos)
+
     qreal xInterval = scenePos.x() - m_pressedPos.x();
     qreal yInterval = scenePos.y() - m_pressedPos.y();
 
@@ -190,10 +209,13 @@ void CustomItem::mouseMoveMoveOperator(const QPointF &scenePos, const QPointF &l
 
 void CustomItem::mouseMoveResizeOperator(const QPointF &scenePos, const QPointF &loacalPos)
 {
+    Q_UNUSED(scenePos)
+
     if (!m_isResizeable)
         return;
 
     qreal ratio = m_ratioValue;
+    qDebug()<<loacalPos.x()<<"  "<<loacalPos.y();
     qreal itemWidth = abs(loacalPos.x()) * 2 - m_nInterval - m_nEllipseWidth;
     qreal itemHeight = abs(loacalPos.y()) * 2 - m_nInterval - m_nEllipseWidth;
     if (m_isRatioScale)
@@ -204,20 +226,51 @@ void CustomItem::mouseMoveResizeOperator(const QPointF &scenePos, const QPointF 
         return;
 
     m_size = QSize(itemWidth, itemHeight);
+    qDebug()<<"resize";
     this->update();
 }
 
 void CustomItem::mouseMoveRotateOperator(const QPointF &scenePos, const QPointF &loacalPos)
 {
+    qDebug()<<"rotate";
+    // 获取并设置为单位向量
+    QVector2D startVec(m_pos.x() - 0, m_pos.y() - 0);
+    startVec.normalize();
+    QVector2D endVec(loacalPos.x() - 0, loacalPos.y() - 0);
+    endVec.normalize();
 
+    // 单位向量点乘，计算角度
+    qreal dotValue = QVector2D::dotProduct(startVec, endVec);
+    if (dotValue > 1.0)
+        dotValue = 1.0;
+    else if (dotValue < -1.0)
+        dotValue = -1.0;
+
+    dotValue = qAcos(dotValue);
+    if (qIsNaN(dotValue))
+        dotValue = 0.0;
+
+    // 获取角度
+    qreal angle = dotValue * 1.0 / (PI / 180);
+
+    // 向量叉乘获取方向
+    QVector3D crossValue = QVector3D::crossProduct(QVector3D(startVec, 1.0),QVector3D(endVec, 1.0));
+    if (crossValue.z() < 0)
+        angle = -angle;
+    m_rotate += angle;
+
+    // 设置变化矩阵
+    m_transform.rotate(m_rotate);
+    this->setTransform(m_transform);
+
+    m_pos = loacalPos;
+    this->update();
 }
 
 void CustomItem::initIcon()
 {
     if(m_closeIcon.isNull())
-    {
         m_closeIcon.load(":/icon/E:/ENTERTAIN/Picture/icon/cancel.png");
-    }
     if(m_resizeIcon.isNull())
         m_resizeIcon.load(":/icon/E:/ENTERTAIN/Picture/icon/resize.png");
     if(m_rotateIcon.isNull())
@@ -226,6 +279,5 @@ void CustomItem::initIcon()
     m_closePixmap = QPixmap::fromImage(m_closeIcon);
     m_resizePixmap = QPixmap::fromImage(m_resizeIcon);
     m_rotatePixmap = QPixmap::fromImage(m_rotateIcon);
-    qDebug()<<m_closePixmap.isNull();
 }
 

@@ -1,3 +1,9 @@
+/**
+* @projectName   simulation
+* @brief         自定义图元组件
+* @author        Zeki
+* @date          2021-09-05
+*/
 #ifndef CUSTOMITEM_H
 #define CUSTOMITEM_H
 
@@ -13,7 +19,8 @@ public:
             t_none,
             t_move,
             t_resize,
-            t_rotate
+            t_rotate,
+            t_close
         };
     void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget) Q_DECL_OVERRIDE;
     QRectF boundingRect() const Q_DECL_OVERRIDE;
