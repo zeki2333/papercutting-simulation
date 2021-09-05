@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>822</width>
-    <height>581</height>
+    <width>989</width>
+    <height>696</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -85,9 +85,7 @@
         </property>
         <property name="icon">
          <iconset>
-          <normaloff>E:/ENTERTAIN/Picture/icon/create.png</normaloff>
-          <activeon>E:/ENTERTAIN/Picture/icon/create_s.png</activeon>
-          <selectedon>E:/ENTERTAIN/Picture/icon/create_s.png</selectedon>E:/ENTERTAIN/Picture/icon/create.png</iconset>
+          <normaloff>E:/ENTERTAIN/Picture/icon/create_s.png</normaloff>E:/ENTERTAIN/Picture/icon/create_s.png</iconset>
         </property>
         <property name="iconSize">
          <size>
@@ -418,6 +416,24 @@
          <property name="frameShadow">
           <enum>QFrame::Raised</enum>
          </property>
+         <layout class="QHBoxLayout" name="horizontalLayout_2">
+          <item>
+           <spacer name="horizontalSpacer">
+            <property name="orientation">
+             <enum>Qt::Horizontal</enum>
+            </property>
+            <property name="sizeType">
+             <enum>QSizePolicy::Fixed</enum>
+            </property>
+            <property name="sizeHint" stdset="0">
+             <size>
+              <width>262</width>
+              <height>20</height>
+             </size>
+            </property>
+           </spacer>
+          </item>
+         </layout>
         </widget>
        </item>
       </layout>
@@ -430,7 +446,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>822</width>
+     <width>989</width>
      <height>23</height>
     </rect>
    </property>

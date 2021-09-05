@@ -10,5 +10,8 @@
         <file>E:/ENTERTAIN/Picture/icon/out_s.png</file>
         <file>E:/ENTERTAIN/Picture/icon/sim.png</file>
         <file>E:/ENTERTAIN/Picture/icon/sim_s.png</file>
+        <file>E:/ENTERTAIN/Picture/icon/cancel.png</file>
+        <file>E:/ENTERTAIN/Picture/icon/resize.png</file>
+        <file>E:/ENTERTAIN/Picture/icon/rotate.png</file>
     </qresource>
 </RCC>
