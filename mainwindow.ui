@@ -509,43 +509,101 @@
           <enum>QFrame::Raised</enum>
          </property>
          <layout class="QGridLayout" name="gridLayout">
+          <property name="leftMargin">
+           <number>5</number>
+          </property>
+          <property name="topMargin">
+           <number>5</number>
+          </property>
+          <property name="rightMargin">
+           <number>5</number>
+          </property>
+          <property name="bottomMargin">
+           <number>5</number>
+          </property>
+          <property name="horizontalSpacing">
+           <number>0</number>
+          </property>
+          <property name="verticalSpacing">
+           <number>5</number>
+          </property>
           <item row="0" column="2">
-           <widget class="QLabel" name="label_4">
+           <widget class="QPushButton" name="moonBtn">
             <property name="styleSheet">
-             <string notr="true">QLabel{image:url(:/icon/E:/ENTERTAIN/Picture/icon/3.png)}</string>
+             <string notr="true">background:transparent;</string>
             </property>
             <property name="text">
              <string/>
             </property>
-           </widget>
-          </item>
-          <item row="0" column="0">
-           <widget class="QLabel" name="label_2">
-            <property name="styleSheet">
-             <string notr="true">QLabel{image:url(:/icon/E:/ENTERTAIN/Picture/icon/round.png)}</string>
+            <property name="icon">
+             <iconset resource="icon.qrc">
+              <normaloff>:/icon/E:/ENTERTAIN/Picture/icon/moon.png</normaloff>:/icon/E:/ENTERTAIN/Picture/icon/moon.png</iconset>
             </property>
-            <property name="text">
-             <string/>
+            <property name="iconSize">
+             <size>
+              <width>60</width>
+              <height>60</height>
+             </size>
             </property>
            </widget>
           </item>
           <item row="0" column="1">
-           <widget class="QLabel" name="label_3">
+           <widget class="QPushButton" name="roundHoleBtn">
             <property name="styleSheet">
-             <string notr="true">QLabel{image:url(:/icon/E:/ENTERTAIN/Picture/icon/moon.png)}</string>
+             <string notr="true">QPushButton{background:transparent;}</string>
             </property>
             <property name="text">
              <string/>
+            </property>
+            <property name="icon">
+             <iconset resource="icon.qrc">
+              <normaloff>:/icon/E:/ENTERTAIN/Picture/icon/round.png</normaloff>:/icon/E:/ENTERTAIN/Picture/icon/round.png</iconset>
+            </property>
+            <property name="iconSize">
+             <size>
+              <width>60</width>
+              <height>60</height>
+             </size>
             </property>
            </widget>
           </item>
           <item row="0" column="3">
-           <widget class="QLabel" name="label_5">
+           <widget class="QPushButton" name="commaBtn">
             <property name="styleSheet">
-             <string notr="true">QLabel{image:url(:/icon/E:/ENTERTAIN/Picture/icon/4.png)}</string>
+             <string notr="true">background:transparent;</string>
             </property>
             <property name="text">
              <string/>
+            </property>
+            <property name="icon">
+             <iconset resource="icon.qrc">
+              <normaloff>:/icon/E:/ENTERTAIN/Picture/icon/3.png</normaloff>:/icon/E:/ENTERTAIN/Picture/icon/3.png</iconset>
+            </property>
+            <property name="iconSize">
+             <size>
+              <width>60</width>
+              <height>60</height>
+             </size>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="4">
+           <widget class="QPushButton" name="willowBtn">
+            <property name="styleSheet">
+             <string notr="true">background:transparent;</string>
+            </property>
+            <property name="text">
+             <string/>
+            </property>
+            <property name="icon">
+             <iconset resource="icon.qrc">
+              <normaloff>:/icon/E:/ENTERTAIN/Picture/icon/4.png</normaloff>:/icon/E:/ENTERTAIN/Picture/icon/4.png</iconset>
+            </property>
+            <property name="iconSize">
+             <size>
+              <width>60</width>
+              <height>60</height>
+             </size>
             </property>
            </widget>
           </item>

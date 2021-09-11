@@ -24,6 +24,14 @@ private slots:
 
     void on_sizheBtn_clicked();
 
+    void on_commaBtn_clicked();
+
+    void on_roundHoleBtn_clicked();
+
+    void on_moonBtn_clicked();
+
+    void on_willowBtn_clicked();
+
 private:
     Ui::MainWindow *ui;
     QGraphicsScene *scene;

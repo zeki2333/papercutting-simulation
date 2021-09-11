@@ -8,16 +8,23 @@ MainWindow::MainWindow(QWidget *parent)
 {
     ui->setupUi(this);
 
+    ui->graphicsView->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+    ui->graphicsView->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+
     scene = new QGraphicsScene;
 
     CustomItem *item = new CustomItem;
     BkgItem *bkgitem = new BkgItem;
+
     bkgitem->setFoldMode(BkgItem::sizhe);
+    //item->setParentItem(bkgitem);
 
     scene->setSceneRect(-150,-150,300,300);
     scene->addItem(bkgitem);
     scene->addItem(item);
     ui->graphicsView->setScene(scene);
+
+
 }
 
 MainWindow::~MainWindow()
@@ -38,4 +45,32 @@ void MainWindow::on_sizheBtn_clicked()
     QPolygonF poly;
     poly<<QPointF(0,0)<<QPoint(30,30)<<QPoint(0,60);
 
+}
+
+
+void MainWindow::on_roundHoleBtn_clicked()
+{
+    qDebug()<<"this is roundHole";
+    qDebug()<<ui->graphicsView->width()<<"----"<<ui->graphicsView->height();
+    //save picture
+    QRect grabRect(QPoint(112,191),QPoint(311,390));//(view.width-bkg.width)/2
+    QPixmap pix;
+    pix = ui->graphicsView->grab(grabRect);
+    pix.save("qttest.jpg");
+
+}
+
+void MainWindow::on_moonBtn_clicked()
+{
+    qDebug()<<"this is moon";
+}
+
+void MainWindow::on_commaBtn_clicked()
+{
+    qDebug()<<"this is comma";
+}
+
+void MainWindow::on_willowBtn_clicked()
+{
+    qDebug()<<"this is willow";
 }
