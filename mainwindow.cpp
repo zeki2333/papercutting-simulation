@@ -7,16 +7,15 @@ MainWindow::MainWindow(QWidget *parent)
     , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
-    //scene->addItem(item);
+
     scene = new QGraphicsScene;
-    QPen pen;QBrush brush;
-    pen.setColor(Qt::red);
-    pen.setWidth(5);
-    brush.setColor(Qt::blue);
 
     CustomItem *item = new CustomItem;
-    rectbg = scene->addRect(0,0,30,50,pen,brush);
+    BkgItem *bkgitem = new BkgItem;
+    bkgitem->setFoldMode(BkgItem::sizhe);
 
+    scene->setSceneRect(-150,-150,300,300);
+    scene->addItem(bkgitem);
     scene->addItem(item);
     ui->graphicsView->setScene(scene);
 }

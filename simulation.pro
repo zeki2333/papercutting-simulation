@@ -17,11 +17,13 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 SOURCES += \
     CustomItem.cpp \
+    bkgitem.cpp \
     main.cpp \
     mainwindow.cpp
 
 HEADERS += \
     CustomItem.h \
+    bkgitem.h \
     mainwindow.h
 
 FORMS += \

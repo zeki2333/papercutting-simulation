@@ -22,7 +22,7 @@ QImage CustomItem::m_rotateIcon;
 CustomItem::CustomItem()
 {
     color = Qt::blue;
-    pix.load(":/icon/E:/ENTERTAIN/Picture/icon/create_s.png");
+    pix.load(":/icon/E:/ENTERTAIN/Picture/icon/fillWhite/roundHole.png");
 
     //this->setFlag(QGraphicsItem::ItemIsFocusable);
     //设置图元为可移动的

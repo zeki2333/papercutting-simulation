@@ -5,6 +5,7 @@
 #include <QGraphicsRectItem>
 #include <QDebug>
 #include "CustomItem.h"
+#include "bkgitem.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
