@@ -9,8 +9,14 @@ MainWindow::MainWindow(QWidget *parent)
     ui->setupUi(this);
     //scene->addItem(item);
     scene = new QGraphicsScene;
+    QPen pen;QBrush brush;
+    pen.setColor(Qt::red);
+    pen.setWidth(5);
+    brush.setColor(Qt::blue);
 
     CustomItem *item = new CustomItem;
+    rectbg = scene->addRect(0,0,30,50,pen,brush);
+
     scene->addItem(item);
     ui->graphicsView->setScene(scene);
 }
@@ -20,3 +26,17 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
+
+void MainWindow::on_erfangBtn_clicked()
+{
+    qDebug()<<"二方连续开折";
+
+}
+
+void MainWindow::on_sizheBtn_clicked()
+{
+    qDebug()<<"四折";
+    QPolygonF poly;
+    poly<<QPointF(0,0)<<QPoint(30,30)<<QPoint(0,60);
+
+}

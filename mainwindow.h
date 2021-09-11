@@ -2,6 +2,8 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
+#include <QGraphicsRectItem>
+#include <QDebug>
 #include "CustomItem.h"
 
 QT_BEGIN_NAMESPACE
@@ -16,8 +18,14 @@ public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
 
+private slots:
+    void on_erfangBtn_clicked();
+
+    void on_sizheBtn_clicked();
+
 private:
     Ui::MainWindow *ui;
     QGraphicsScene *scene;
+    QGraphicsRectItem *rectbg;
 };
 #endif // MAINWINDOW_H

@@ -38,7 +38,7 @@ CustomItem::CustomItem()
  * @brief getDistance
  * @param Start
  * @param End
- * @return the distance between the start point and end point
+ * @return the distance between the start point and the end point
  */
 qreal getDistance(QPointF Start,QPointF End)
 {
@@ -173,7 +173,10 @@ void CustomItem::mouseReleaseEvent(QGraphicsSceneMouseEvent *event)
     Q_UNUSED(event);
     qDebug() << "CustomItem::mouseReleaseEvent";
     if(m_itemOper == t_close)
+    {
         delete this;
+        return;
+    }
     m_itemOper = t_none;
     return QGraphicsItem::mouseReleaseEvent(event);
 }
@@ -215,7 +218,6 @@ void CustomItem::mouseMoveResizeOperator(const QPointF &scenePos, const QPointF 
         return;
 
     qreal ratio = m_ratioValue;
-    qDebug()<<loacalPos.x()<<"  "<<loacalPos.y();
     qreal itemWidth = abs(loacalPos.x()) * 2 - m_nInterval - m_nEllipseWidth;
     qreal itemHeight = abs(loacalPos.y()) * 2 - m_nInterval - m_nEllipseWidth;
     if (m_isRatioScale)
