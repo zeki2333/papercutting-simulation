@@ -10,6 +10,7 @@ MainWindow::MainWindow(QWidget *parent)
 
     ui->graphicsView->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
     ui->graphicsView->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+    ui->graphicsView->setViewportUpdateMode(QGraphicsView::FullViewportUpdate);
 
     scene = new QGraphicsScene;
 
@@ -73,4 +74,40 @@ void MainWindow::on_commaBtn_clicked()
 void MainWindow::on_willowBtn_clicked()
 {
     qDebug()<<"this is willow";
+}
+
+void MainWindow::on_simulateBtn_clicked()
+{
+    Mat dstImg;
+    Mat srcImg = imread("C:\\Users\\11130\\Desktop\\qttest.jpg");
+    //imshow("simulate",srcImg);
+    imageAdjust(srcImg,dstImg);
+    sifangduizhe(dstImg);
+
+}
+
+void MainWindow::sifangduizhe(const Mat &shuru)
+{
+    Mat zuoshang, zuoxia, youxia;
+    flip(shuru, zuoshang, 1);
+    flip(shuru, youxia, 0);
+    flip(shuru, zuoxia, -1);
+    Mat shuchu, combine1, combine2;
+    hconcat(zuoshang, shuru, combine1);
+    hconcat(zuoxia, youxia, combine2);
+    vconcat(combine1, combine2, shuchu);
+    namedWindow("四方对折", WINDOW_AUTOSIZE);
+    //imshow("原图", shuru);//原图是否显示
+    imshow("四方对折", shuchu);
+}
+/**
+ * @brief MainWindow::imageAdjust 将图像调整为220X200大小后再裁剪边缘得到200X200大小的图像
+ * @param shuru
+ * @param shuchu
+ */
+void MainWindow::imageAdjust(const Mat &shuru, Mat &shuchu)
+{
+    Mat rscale;
+    cv::resize(shuru, rscale, Size(220, 220));
+    shuchu = rscale(cv::Rect(10, 10, 200, 200));
 }

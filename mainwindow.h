@@ -4,8 +4,11 @@
 #include <QMainWindow>
 #include <QGraphicsRectItem>
 #include <QDebug>
+#include <opencv2/opencv.hpp>
 #include "CustomItem.h"
 #include "bkgitem.h"
+
+using namespace cv;
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -32,9 +35,13 @@ private slots:
 
     void on_willowBtn_clicked();
 
+    void on_simulateBtn_clicked();
+
 private:
     Ui::MainWindow *ui;
     QGraphicsScene *scene;
     QGraphicsRectItem *rectbg;
+    void sifangduizhe(const Mat& shuru);
+    void imageAdjust(const Mat& shuru,Mat& shuchu);
 };
 #endif // MAINWINDOW_H
