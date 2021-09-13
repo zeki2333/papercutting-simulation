@@ -14,6 +14,8 @@ class CustomItem : public QGraphicsItem
 {
 public:
     CustomItem();
+    CustomItem(QString pixName);
+    ~CustomItem();
     enum ItemOperator
         {
             t_none,

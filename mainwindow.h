@@ -5,6 +5,8 @@
 #include <QGraphicsRectItem>
 #include <QDebug>
 #include <opencv2/opencv.hpp>
+#include <opencv2/imgproc/imgproc.hpp>
+#include <opencv2/imgproc/types_c.h>
 #include "CustomItem.h"
 #include "bkgitem.h"
 
@@ -38,10 +40,12 @@ private slots:
     void on_simulateBtn_clicked();
 
 private:
+    QPixmap SnapShootPix;
     Ui::MainWindow *ui;
     QGraphicsScene *scene;
     QGraphicsRectItem *rectbg;
     void sifangduizhe(const Mat& shuru);
     void imageAdjust(const Mat& shuru,Mat& shuchu);
+    BkgItem *bkgitem;
 };
 #endif // MAINWINDOW_H

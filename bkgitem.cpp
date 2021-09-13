@@ -28,6 +28,16 @@ void BkgItem::setFoldMode(BkgItem::foldMode mode)
 
 }
 
+int BkgItem::width()
+{
+    return m_size.width();
+}
+
+int BkgItem::height()
+{
+    return m_size.height();
+}
+
 QRectF BkgItem::boundingRect() const
 {
     QPointF centerPos(0, 0);

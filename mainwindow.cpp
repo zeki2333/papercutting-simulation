@@ -14,15 +14,15 @@ MainWindow::MainWindow(QWidget *parent)
 
     scene = new QGraphicsScene;
 
-    CustomItem *item = new CustomItem;
-    BkgItem *bkgitem = new BkgItem;
+    //CustomItem *item = new CustomItem;
+    bkgitem = new BkgItem;
 
     bkgitem->setFoldMode(BkgItem::sizhe);
     //item->setParentItem(bkgitem);
 
     scene->setSceneRect(-150,-150,300,300);
     scene->addItem(bkgitem);
-    scene->addItem(item);
+    //scene->addItem(item);
     ui->graphicsView->setScene(scene);
 
 
@@ -51,36 +51,48 @@ void MainWindow::on_sizheBtn_clicked()
 
 void MainWindow::on_roundHoleBtn_clicked()
 {
-    qDebug()<<"this is roundHole";
-    qDebug()<<ui->graphicsView->width()<<"----"<<ui->graphicsView->height();
-    //save picture
-    QRect grabRect(QPoint(112,191),QPoint(311,390));//(view.width-bkg.width)/2
-    QPixmap pix;
-    pix = ui->graphicsView->grab(grabRect);
-    pix.save("qttest.jpg");
+    qDebug()<<"this is roundHole pattern";
+    CustomItem* round = new CustomItem("roundHole");
+    scene->addItem(round);
+
 
 }
 
 void MainWindow::on_moonBtn_clicked()
 {
-    qDebug()<<"this is moon";
+    qDebug()<<"this is moon pattern";
+    CustomItem* moon = new CustomItem("moon");
+    scene->addItem(moon);
 }
 
 void MainWindow::on_commaBtn_clicked()
 {
-    qDebug()<<"this is comma";
+    qDebug()<<"this is comma pattern";
+    CustomItem* comma = new CustomItem("comma");
+    scene->addItem(comma);
 }
 
 void MainWindow::on_willowBtn_clicked()
 {
-    qDebug()<<"this is willow";
+    qDebug()<<"this is willow pattern";
+    CustomItem* willow = new CustomItem("willow");
+    scene->addItem(willow);
 }
 
 void MainWindow::on_simulateBtn_clicked()
 {
+
+    qDebug()<<ui->graphicsView->width()<<"----"<<ui->graphicsView->height();
+    //save picture to pix
+    int width = (ui->graphicsView->width() - bkgitem->width())/2;
+    int height = (ui->graphicsView->height() - bkgitem->height())/2;
+    QRect grabRect(width,height,bkgitem->width(),bkgitem->height());//(view.width-bkg.width)/2
+    QPixmap pix;
+    pix = ui->graphicsView->grab(grabRect);
+    pix.save("qttest.jpg");
+
     Mat dstImg;
-    Mat srcImg = imread("C:\\Users\\11130\\Desktop\\qttest.jpg");
-    //imshow("simulate",srcImg);
+    Mat srcImg = imread("qttest.jpg");
     imageAdjust(srcImg,dstImg);
     sifangduizhe(dstImg);
 
@@ -97,7 +109,6 @@ void MainWindow::sifangduizhe(const Mat &shuru)
     hconcat(zuoxia, youxia, combine2);
     vconcat(combine1, combine2, shuchu);
     namedWindow("四方对折", WINDOW_AUTOSIZE);
-    //imshow("原图", shuru);//原图是否显示
     imshow("四方对折", shuchu);
 }
 /**
@@ -111,3 +122,4 @@ void MainWindow::imageAdjust(const Mat &shuru, Mat &shuchu)
     cv::resize(shuru, rscale, Size(220, 220));
     shuchu = rscale(cv::Rect(10, 10, 200, 200));
 }
+

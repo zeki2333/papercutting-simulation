@@ -21,7 +21,6 @@ QImage CustomItem::m_rotateIcon;
 
 CustomItem::CustomItem()
 {
-    color = Qt::blue;
     pix.load(":/icon/E:/ENTERTAIN/Picture/icon/fillWhite/roundHole.png");
 
     //this->setFlag(QGraphicsItem::ItemIsFocusable);
@@ -32,6 +31,20 @@ CustomItem::CustomItem()
     initIcon();
     m_size.setWidth(pix.width());
     m_size.setHeight(pix.height());
+}
+
+CustomItem::CustomItem(QString pixName)
+{
+    pix.load(":/icon/E:/ENTERTAIN/Picture/icon/fillWhite/"+pixName+".png");
+    this->setFlag(QGraphicsItem::ItemIsSelectable);
+    initIcon();
+    m_size.setWidth(pix.width());
+    m_size.setHeight(pix.height());
+}
+
+CustomItem::~CustomItem()
+{
+    qDebug()<<"delete";
 }
 
 /**

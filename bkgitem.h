@@ -21,6 +21,8 @@ public:
     };
     void setFoldMode(foldMode mode);
     foldMode m_mode;
+    int width();
+    int height();
 protected:
     QRectF boundingRect() const override;
     QPainterPath shape() const override;
