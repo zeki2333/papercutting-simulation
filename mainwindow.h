@@ -9,6 +9,7 @@
 #include <opencv2/imgproc/types_c.h>
 #include "CustomItem.h"
 #include "bkgitem.h"
+#include "svgitem.h"
 
 using namespace cv;
 

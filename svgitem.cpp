@@ -1,10 +1,4 @@
-/**
-* @projectName   simulation
-* @brief         自定义图元组件的函数实现
-* @author        Zeki
-* @date          2021-09-05
-*/
-#include "CustomItem.h"
+#include "svgitem.h"
 #include <QDebug>
 #include <QPainter>
 #include <QCursor>
@@ -12,61 +6,38 @@
 #include <QtMath>
 #include <QVector2D>
 #include <QVector3D>
+#include <QByteArray>
 
 #define PI 3.14159265358979
 
-QImage CustomItem::m_closeIcon;
-QImage CustomItem::m_resizeIcon;
-QImage CustomItem::m_rotateIcon;
+QImage svgItem::m_closeIcon;
+QImage svgItem::m_resizeIcon;
+QImage svgItem::m_rotateIcon;
 
-CustomItem::CustomItem()
+svgItem::svgItem()
 {
-    pix.load(":/icon/E:/ENTERTAIN/Picture/icon/fillWhite/roundHole.png");
+    m_render = new QSvgRenderer;
 
-    //this->setFlag(QGraphicsItem::ItemIsFocusable);
-    //设置图元为可移动的
-    //this->setFlag(QGraphicsItem::ItemIsMovable);
+    //读取svg
+    file.setFileName(":/icon/E:/ENTERTAIN/Picture/icon/Vector.svg");
+    file.open(QIODevice::ReadOnly);
+    m_render->load(file.readAll());
+    file.close();
 
     this->setFlag(QGraphicsItem::ItemIsSelectable);
     initIcon();
-    m_size.setWidth(pix.width());
-    m_size.setHeight(pix.height());
-    m_color = pix.toImage().pixel(m_size.width()/2,m_size.height()/2);
-    qDebug()<<m_color.rgb();
+
+    m_size = QSize(m_render->boundsOnElement("svg").width(),m_render->boundsOnElement("svg").height());
+
 
 }
 
-CustomItem::CustomItem(QString pixName)
-{
-    pix.load(":/icon/E:/ENTERTAIN/Picture/icon/fillWhite/"+pixName+".png");
-    this->setFlag(QGraphicsItem::ItemIsSelectable);
-    initIcon();
-    m_size.setWidth(pix.width());
-    m_size.setHeight(pix.height());
-    m_color = pix.toImage().pixel(m_size.width()/2,m_size.height()/2);
-    qDebug()<<m_color.rgb();
-}
-
-CustomItem::~CustomItem()
+svgItem::~svgItem()
 {
     qDebug()<<"delete";
 }
 
-/**
- * @brief getDistance
- * @param Start
- * @param End
- * @return the distance between the start point and the end point
- */
-qreal getDistance(QPointF Start,QPointF End)
-{
-    qreal delta_x = Start.x() - End.x();
-    qreal delta_y = Start.y() - End.y();
-    return qSqrt(delta_x*delta_x + delta_y*delta_y);
-
-}
-
-void CustomItem::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget)
+void svgItem::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget)
 {
     Q_UNUSED(option);
     Q_UNUSED(widget);
@@ -75,7 +46,7 @@ void CustomItem::paint(QPainter *painter, const QStyleOptionGraphicsItem *option
     painter->setRenderHint(QPainter::SmoothPixmapTransform, true);
     painter->setRenderHint(QPainter::TextAntialiasing, true);
 
-    painter->drawPixmap(QPoint(-m_size.width()/2,-m_size.height()/2),pix.scaled(m_size.width(),m_size.height(),Qt::KeepAspectRatio),QRect(0,0,m_size.width(),m_size.height()));
+    m_render->render(painter,QRectF(-m_size.width()/2,-m_size.height()/2,m_size.width(),m_size.height()));//渲染本体
 
     if(!this->isSelected())
         return;
@@ -114,11 +85,15 @@ void CustomItem::paint(QPainter *painter, const QStyleOptionGraphicsItem *option
                                       m_nEllipseWidth, m_nEllipseWidth), m_resizePixmap);
 }
 
-/**
- * @brief CustomItem::boundingRect
- * @return return a rect that has two interval-space when being selected or return the origin rect
- */
-QRectF CustomItem::boundingRect() const
+qreal svgItem::getDistance(QPointF Start,QPointF End)
+{
+    qreal delta_x = Start.x() - End.x();
+    qreal delta_y = Start.y() - End.y();
+    return qSqrt(delta_x*delta_x + delta_y*delta_y);
+
+}
+
+QRectF svgItem::boundingRect() const
 {
     QRectF rectF = getCustomRect();
 
@@ -131,26 +106,7 @@ QRectF CustomItem::boundingRect() const
     return rectF;
 }
 
-QPixmap CustomItem::ChangeImageColor(QPixmap src, QColor dstColor)
-{
-    QImage image = src.toImage();
-    for(int w = 0;w < src.width();++w)
-    {
-        for(int h = 0;h< image.height();++h)
-        {
-           QRgb rgb = image.pixel(w,h);
-           if(rgb == m_color.rgb())
-           {
-               //替换颜色
-               image.setPixel(w,h,dstColor.rgba());
-           }
-        }
-    }
-    m_color = dstColor;
-    return QPixmap::fromImage(image);
-}
-
-void CustomItem::mousePressEvent(QGraphicsSceneMouseEvent *event)
+void svgItem::mousePressEvent(QGraphicsSceneMouseEvent *event)
 {
     m_transform = this->transform();
 
@@ -178,9 +134,10 @@ void CustomItem::mousePressEvent(QGraphicsSceneMouseEvent *event)
 
     this->update();
     return QGraphicsItem::mousePressEvent(event);
+
 }
 
-void CustomItem::mouseMoveEvent(QGraphicsSceneMouseEvent *event)
+void svgItem::mouseMoveEvent(QGraphicsSceneMouseEvent *event)
 {
     // 获取场景坐标和本地坐标
     QPointF scenePos = event->scenePos();
@@ -205,7 +162,7 @@ void CustomItem::mouseMoveEvent(QGraphicsSceneMouseEvent *event)
     return QGraphicsItem::mouseMoveEvent(event);
 }
 
-void CustomItem::mouseReleaseEvent(QGraphicsSceneMouseEvent *event)
+void svgItem::mouseReleaseEvent(QGraphicsSceneMouseEvent *event)
 {
     Q_UNUSED(event);
     qDebug() << "CustomItem::mouseReleaseEvent";
@@ -216,29 +173,24 @@ void CustomItem::mouseReleaseEvent(QGraphicsSceneMouseEvent *event)
         return;
     }
     m_itemOper = t_none;
-    pix = ChangeImageColor(pix,Qt::red);
     return QGraphicsItem::mouseReleaseEvent(event);
 }
 
-QPainterPath CustomItem::shape() const
+QPainterPath svgItem::shape() const
 {
     QPainterPath path;
     path.addRect(boundingRect());
     return path;
 }
 
-/**
- * @brief CustomItem::getCustomRect
- * @return a rect that fits the shape of the icon
- */
-QRectF CustomItem::getCustomRect() const
+QRectF svgItem::getCustomRect() const
 {
     QPointF centerPos(0, 0);
     return QRectF(centerPos.x() - m_size.width() / 2, centerPos.y() - m_size.height() / 2, \
                   m_size.width(), m_size.height());
 }
 
-void CustomItem::mouseMoveMoveOperator(const QPointF &scenePos, const QPointF &loacalPos)
+void svgItem::mouseMoveMoveOperator(const QPointF &scenePos, const QPointF &loacalPos)
 {
     Q_UNUSED(loacalPos)
 
@@ -249,7 +201,7 @@ void CustomItem::mouseMoveMoveOperator(const QPointF &scenePos, const QPointF &l
     this->update();
 }
 
-void CustomItem::mouseMoveResizeOperator(const QPointF &scenePos, const QPointF &loacalPos)
+void svgItem::mouseMoveResizeOperator(const QPointF &scenePos, const QPointF &loacalPos)
 {
     Q_UNUSED(scenePos)
 
@@ -271,9 +223,10 @@ void CustomItem::mouseMoveResizeOperator(const QPointF &scenePos, const QPointF 
     this->update();
 }
 
-void CustomItem::mouseMoveRotateOperator(const QPointF &scenePos, const QPointF &loacalPos)
+void svgItem::mouseMoveRotateOperator(const QPointF &scenePos, const QPointF &loacalPos)
 {
     qDebug()<<"rotate";
+
     // 获取并设置为单位向量
     QVector2D startVec(m_pos.x() - 0, m_pos.y() - 0);
     startVec.normalize();
@@ -306,9 +259,10 @@ void CustomItem::mouseMoveRotateOperator(const QPointF &scenePos, const QPointF 
 
     m_pos = loacalPos;
     this->update();
+
 }
 
-void CustomItem::initIcon()
+void svgItem::initIcon()
 {
     if(m_closeIcon.isNull())
         m_closeIcon.load(":/icon/E:/ENTERTAIN/Picture/icon/cancel.png");
@@ -321,4 +275,3 @@ void CustomItem::initIcon()
     m_resizePixmap = QPixmap::fromImage(m_resizeIcon);
     m_rotatePixmap = QPixmap::fromImage(m_rotateIcon);
 }
-

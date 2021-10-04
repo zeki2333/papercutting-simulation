@@ -20,8 +20,13 @@ MainWindow::MainWindow(QWidget *parent)
     bkgitem->setFoldMode(BkgItem::sizhe);
     //item->setParentItem(bkgitem);
 
+    //test svg
+    svgItem *svg = new svgItem;
+
+
     scene->setSceneRect(-150,-150,300,300);
     scene->addItem(bkgitem);
+    scene->addItem(svg);
     //scene->addItem(item);
     ui->graphicsView->setScene(scene);
 
@@ -122,4 +127,3 @@ void MainWindow::imageAdjust(const Mat &shuru, Mat &shuchu)
     cv::resize(shuru, rscale, Size(220, 220));
     shuchu = rscale(cv::Rect(10, 10, 200, 200));
 }
-

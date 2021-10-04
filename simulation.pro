@@ -1,4 +1,4 @@
-QT       += core gui
+QT       += core gui svg xml
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -19,12 +19,14 @@ SOURCES += \
     CustomItem.cpp \
     bkgitem.cpp \
     main.cpp \
-    mainwindow.cpp
+    mainwindow.cpp \
+    svgitem.cpp
 
 HEADERS += \
     CustomItem.h \
     bkgitem.h \
-    mainwindow.h
+    mainwindow.h \
+    svgitem.h
 
 FORMS += \
     mainwindow.ui

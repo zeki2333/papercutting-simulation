@@ -1,21 +1,18 @@
-/**
-* @projectName   simulation
-* @brief         自定义图元组件
-* @author        Zeki
-* @date          2021-09-05
-*/
-#ifndef CUSTOMITEM_H
-#define CUSTOMITEM_H
+#ifndef SVGITEM_H
+#define SVGITEM_H
 
 #include <QGraphicsItem>
 #include <QGraphicsSceneMouseEvent>
 
-class CustomItem : public QGraphicsItem
+#include <QDomDocument>
+#include <QSvgRenderer>
+#include <QFile>
+
+class svgItem : public QGraphicsItem
 {
 public:
-    CustomItem();
-    CustomItem(QString pixName);
-    ~CustomItem();
+    svgItem();
+    ~svgItem();
     enum ItemOperator
         {
             t_none,
@@ -26,7 +23,6 @@ public:
         };
     void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget) Q_DECL_OVERRIDE;
     QRectF boundingRect() const Q_DECL_OVERRIDE;
-    QPixmap ChangeImageColor(QPixmap src,QColor dstColor);
 protected:
     //鼠标事件
     void mousePressEvent(QGraphicsSceneMouseEvent *event) Q_DECL_OVERRIDE;
@@ -53,6 +49,7 @@ signals:
     void onClickedCopyItem(void);
 private:
     void initIcon(void);
+    qreal getDistance(QPointF Start,QPointF End);
 
     static QImage m_closeIcon;
     static QImage m_resizeIcon;
@@ -69,9 +66,13 @@ private:
 
     int m_nInterval = 20;
     int m_nEllipseWidth = 16;
-    QColor color;
+    QColor color = Qt::white;
     QPixmap pix;
-    QColor m_color;     //当前纹样的颜色
+
+
+    QFile file;
+    QSvgRenderer *m_render;
+    QDomDocument doc;
 };
 
-#endif // CUSTOMITEM_H
+#endif // SVGITEM_H
