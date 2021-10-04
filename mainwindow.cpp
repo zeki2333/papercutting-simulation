@@ -27,6 +27,9 @@ MainWindow::MainWindow(QWidget *parent)
     scene->setSceneRect(-150,-150,300,300);
     scene->addItem(bkgitem);
     scene->addItem(svg);
+
+    connect(svg,SIGNAL(sync(int,QString)),this,SLOT(syncProperty(int,QString)));
+
     //scene->addItem(item);
     ui->graphicsView->setScene(scene);
 
@@ -155,4 +158,10 @@ void MainWindow::on_colorBtn_clicked()
     }
 
 }
+
+void MainWindow::syncProperty(int size, QString color)
+{
+    qDebug()<<"sync"<<size<<"  "<<color;
+}
+
 

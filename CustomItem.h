@@ -10,7 +10,7 @@
 #include <QGraphicsItem>
 #include <QGraphicsSceneMouseEvent>
 
-class CustomItem : public QGraphicsItem
+class CustomItem : public QGraphicsItem,public QObject
 {
 public:
     CustomItem();
@@ -51,6 +51,7 @@ protected:
 
 signals:
     void onClickedCopyItem(void);
+    void click(int size,QString color);
 private:
     void initIcon(void);
 

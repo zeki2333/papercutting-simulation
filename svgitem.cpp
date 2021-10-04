@@ -152,6 +152,8 @@ void svgItem::mousePressEvent(QGraphicsSceneMouseEvent *event)
     m_pressedPos = scenePos;
     m_startPos = this->pos();
 
+    emit sync(m_size.width(),color.name());
+
     this->update();
     return QGraphicsItem::mousePressEvent(event);
 

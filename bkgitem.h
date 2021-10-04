@@ -10,8 +10,9 @@
 #include <QGraphicsItem>
 #include <QPainter>
 
-class BkgItem : public QGraphicsItem
+class BkgItem : public QObject,public QGraphicsItem
 {
+    Q_OBJECT
 public:
     BkgItem();
 public:

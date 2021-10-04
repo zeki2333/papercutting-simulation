@@ -21,7 +21,6 @@ QT_END_NAMESPACE
 class MainWindow : public QMainWindow
 {
     Q_OBJECT
-
 public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
@@ -42,7 +41,8 @@ private slots:
     void on_simulateBtn_clicked();
 
     void on_colorBtn_clicked();
-
+public slots:
+    void syncProperty(int size,QString color);
 private:
     QPixmap SnapShootPix;
     Ui::MainWindow *ui;

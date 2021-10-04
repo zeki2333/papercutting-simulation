@@ -8,8 +8,9 @@
 #include <QSvgRenderer>
 #include <QFile>
 
-class svgItem : public QGraphicsItem
+class svgItem : public QObject,public QGraphicsItem
 {
+    Q_OBJECT
 public:
     svgItem();
     ~svgItem();
@@ -49,6 +50,7 @@ protected:
 
 signals:
     void onClickedCopyItem(void);
+    void sync(int size,QString color);
 private:
     void initIcon(void);
     qreal getDistance(QPointF Start,QPointF End);
