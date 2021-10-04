@@ -23,12 +23,14 @@ public:
         };
     void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget) Q_DECL_OVERRIDE;
     QRectF boundingRect() const Q_DECL_OVERRIDE;
+    void changeColor(QString color);
 protected:
     //鼠标事件
     void mousePressEvent(QGraphicsSceneMouseEvent *event) Q_DECL_OVERRIDE;
     void mouseMoveEvent(QGraphicsSceneMouseEvent *event) Q_DECL_OVERRIDE;
     void mouseReleaseEvent(QGraphicsSceneMouseEvent *event) Q_DECL_OVERRIDE;
     QPainterPath shape() const override;
+
 protected:
     QRectF getCustomRect(void) const;
 
@@ -50,6 +52,7 @@ signals:
 private:
     void initIcon(void);
     qreal getDistance(QPointF Start,QPointF End);
+    void SetAttrRecur(QDomElement elem, QString strtagname, QString strattr, QString strattrval);
 
     static QImage m_closeIcon;
     static QImage m_resizeIcon;

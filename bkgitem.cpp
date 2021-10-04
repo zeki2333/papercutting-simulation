@@ -1,9 +1,10 @@
 #include "bkgitem.h"
-#include <QPainter>
+
 
 BkgItem::BkgItem()
 {
     this->m_mode = none;
+    this->setFlag(QGraphicsItem::ItemIsSelectable);
     m_size.setWidth(0);m_size.setHeight(0);
     m_sizhe_size.setWidth(200);m_sizhe_size.setHeight(200);
     m_erfang_size.setWidth(30);m_erfang_size.setHeight(50);
@@ -38,6 +39,12 @@ int BkgItem::height()
     return m_size.height();
 }
 
+void BkgItem::changeColor(QString color)
+{
+
+    m_color = color;
+}
+
 QRectF BkgItem::boundingRect() const
 {
     QPointF centerPos(0, 0);
@@ -59,20 +66,34 @@ void BkgItem::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, Q
 
     painter->setRenderHint(QPainter::Antialiasing, true);
 
-    QPen pen;
-    QBrush brush;
-
     pen.setWidth(5);
-    pen.setColor(Qt::red);
+    pen.setColor(m_color);
     pen.setJoinStyle(Qt::MiterJoin);
 
-    brush.setColor(Qt::red);
+    brush.setColor(m_color);
     brush.setStyle(Qt::SolidPattern);
 
     QRectF rect = boundingRect();
     painter->setPen(pen);
     painter->setBrush(brush);
     painter->drawRect(rect);
+
+    if(!this->isSelected())
+        return;
+
+    pen.setWidth(1);
+    pen.setColor(m_color);
+    pen.setStyle(Qt::DashLine);
+    painter->setPen(pen);
+
+    QRectF itemRect = getCustomRect();
+    QRectF outLineRect = itemRect.adjusted(-m_nInterval, -m_nInterval, m_nInterval, m_nInterval);
+
+    painter->setBrush(QColor(Qt::transparent));
+    painter->drawRect(outLineRect);
+
+    //画笔样式复位
+    pen.setStyle(Qt::SolidLine);
 }
 
 QRectF BkgItem::getCustomRect() const

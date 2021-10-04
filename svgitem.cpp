@@ -21,7 +21,9 @@ svgItem::svgItem()
     //读取svg
     file.setFileName(":/icon/E:/ENTERTAIN/Picture/icon/Vector.svg");
     file.open(QIODevice::ReadOnly);
-    m_render->load(file.readAll());
+    QByteArray svgData = file.readAll();
+    doc.setContent(svgData);
+    m_render->load(svgData);
     file.close();
 
     this->setFlag(QGraphicsItem::ItemIsSelectable);
@@ -91,6 +93,24 @@ qreal svgItem::getDistance(QPointF Start,QPointF End)
     qreal delta_y = Start.y() - End.y();
     return qSqrt(delta_x*delta_x + delta_y*delta_y);
 
+}
+
+void svgItem::SetAttrRecur(QDomElement elem, QString strtagname, QString strattr, QString strattrval)
+{
+    // if it has the tagname then overwritte desired attribute
+    if (elem.tagName().compare(strtagname) == 0)
+    {
+        elem.setAttribute(strattr, strattrval);
+    }
+    // loop all children
+    for (int i = 0; i < elem.childNodes().count(); i++)
+    {
+        if (!elem.childNodes().at(i).isElement())
+        {
+            continue;
+        }
+        SetAttrRecur(elem.childNodes().at(i).toElement(), strtagname, strattr, strattrval);
+    }
 }
 
 QRectF svgItem::boundingRect() const
@@ -181,6 +201,12 @@ QPainterPath svgItem::shape() const
     QPainterPath path;
     path.addRect(boundingRect());
     return path;
+}
+
+void svgItem::changeColor(QString color)
+{
+    SetAttrRecur(doc.documentElement(),"path","fill",color);
+    m_render->load(doc.toByteArray());
 }
 
 QRectF svgItem::getCustomRect() const

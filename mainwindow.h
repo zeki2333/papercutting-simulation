@@ -3,6 +3,7 @@
 
 #include <QMainWindow>
 #include <QGraphicsRectItem>
+#include <QColorDialog>
 #include <QDebug>
 #include <opencv2/opencv.hpp>
 #include <opencv2/imgproc/imgproc.hpp>
@@ -39,6 +40,8 @@ private slots:
     void on_willowBtn_clicked();
 
     void on_simulateBtn_clicked();
+
+    void on_colorBtn_clicked();
 
 private:
     QPixmap SnapShootPix;

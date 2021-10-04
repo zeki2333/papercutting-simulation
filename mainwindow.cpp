@@ -30,7 +30,7 @@ MainWindow::MainWindow(QWidget *parent)
     //scene->addItem(item);
     ui->graphicsView->setScene(scene);
 
-
+    //ui->colorBtn->setStyleSheet("font-color::rgb(15,54,144);");
 }
 
 MainWindow::~MainWindow()
@@ -127,3 +127,32 @@ void MainWindow::imageAdjust(const Mat &shuru, Mat &shuchu)
     cv::resize(shuru, rscale, Size(220, 220));
     shuchu = rscale(cv::Rect(10, 10, 200, 200));
 }
+
+void MainWindow::on_colorBtn_clicked()
+{
+    //按钮颜色改变
+    QString qss = "background:transparent;";
+
+    QColor color = QColorDialog::getColor();
+    qss.append(QString("color:%1;").arg(color.name()));
+    this->ui->colorBtn->setStyleSheet(qss);
+
+    //修改组件颜色
+    QList<QGraphicsItem*> bufList = this->scene->selectedItems();
+    if(bufList.length()==0)
+        return;
+    qDebug()<<"selected:"<<bufList.length();
+    qDebug()<<bufList[0];
+    if(bufList[0] == bkgitem)
+    {
+        BkgItem *bkg = dynamic_cast<BkgItem*>(bufList[0]);
+        bkg->changeColor(color.name());
+    }
+    else
+    {
+        svgItem *svg = dynamic_cast<svgItem*>(bufList[0]);
+        svg->changeColor(color.name());
+    }
+
+}
+
