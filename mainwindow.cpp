@@ -11,6 +11,7 @@ MainWindow::MainWindow(QWidget *parent)
     ui->graphicsView->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
     ui->graphicsView->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
     ui->graphicsView->setViewportUpdateMode(QGraphicsView::FullViewportUpdate);
+    ui->sizeBox->setMaximum(2000);
 
     scene = new QGraphicsScene;
 
@@ -18,6 +19,7 @@ MainWindow::MainWindow(QWidget *parent)
     bkgitem = new BkgItem;
 
     bkgitem->setFoldMode(BkgItem::sizhe);
+    connect(bkgitem,SIGNAL(sync(int,QString)),this,SLOT(syncProperty(int,QString)));
     //item->setParentItem(bkgitem);
 
     //test svg
@@ -162,6 +164,31 @@ void MainWindow::on_colorBtn_clicked()
 void MainWindow::syncProperty(int size, QString color)
 {
     qDebug()<<"sync"<<size<<"  "<<color;
+    //从item同步颜色
+    QString qss = "background:transparent;";
+    qss.append(QString("color:%1;").arg(color));
+    this->ui->colorBtn->setStyleSheet(qss);
+
+    //从item同步大小
+    this->ui->sizeBox->setValue(size);
 }
 
 
+
+void MainWindow::on_sizeBox_valueChanged(int arg1)
+{
+    //修改组件大小
+    QList<QGraphicsItem*> bufList = this->scene->selectedItems();
+    if(bufList.length()==0)
+        return;
+    if(bufList[0] == bkgitem)
+    {
+        BkgItem *bkg = dynamic_cast<BkgItem*>(bufList[0]);
+        bkg->changeSize(arg1);
+    }
+    else
+    {
+        svgItem *svg = dynamic_cast<svgItem*>(bufList[0]);
+        svg->changeSize(arg1);
+    }
+}

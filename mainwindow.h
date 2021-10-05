@@ -41,6 +41,8 @@ private slots:
     void on_simulateBtn_clicked();
 
     void on_colorBtn_clicked();
+    void on_sizeBox_valueChanged(int arg1);
+
 public slots:
     void syncProperty(int size,QString color);
 private:

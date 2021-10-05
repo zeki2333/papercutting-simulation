@@ -26,11 +26,17 @@ svgItem::svgItem()
     m_render->load(svgData);
     file.close();
 
+    //同步颜色
+    QDomElement root = doc.documentElement();
+    //if(root.hasAttribute("path"))
+    qDebug()<<doc.elementsByTagName("path").at(0).toElement().attribute("fill");
+    color = doc.elementsByTagName("path").at(0).toElement().attribute("fill");
+
+
     this->setFlag(QGraphicsItem::ItemIsSelectable);
     initIcon();
 
     m_size = QSize(m_render->boundsOnElement("svg").width(),m_render->boundsOnElement("svg").height());
-
 
 }
 
@@ -136,7 +142,6 @@ void svgItem::mousePressEvent(QGraphicsSceneMouseEvent *event)
     //获取当前模式
     QPointF pos = event->pos();
     QPointF scenePos = event->scenePos();
-    qDebug()<<getDistance(pos,outLineRect.bottomRight());
     if(itemRect.contains(pos))
         m_itemOper = t_move;
     else if(getDistance(pos,outLineRect.topRight()) <= m_nEllipseWidth)
@@ -151,8 +156,6 @@ void svgItem::mousePressEvent(QGraphicsSceneMouseEvent *event)
     m_pos = pos;
     m_pressedPos = scenePos;
     m_startPos = this->pos();
-
-    emit sync(m_size.width(),color.name());
 
     this->update();
     return QGraphicsItem::mousePressEvent(event);
@@ -180,13 +183,14 @@ void svgItem::mouseMoveEvent(QGraphicsSceneMouseEvent *event)
         // 处理旋转
         mouseMoveRotateOperator(scenePos, pos);
     }
-
+    emit sync(m_size.width(),color.name());
     return QGraphicsItem::mouseMoveEvent(event);
 }
 
 void svgItem::mouseReleaseEvent(QGraphicsSceneMouseEvent *event)
 {
     Q_UNUSED(event);
+    emit sync(m_size.width(),color.name());
     qDebug() << "CustomItem::mouseReleaseEvent";
 
     if(m_itemOper == t_close)
@@ -208,7 +212,15 @@ QPainterPath svgItem::shape() const
 void svgItem::changeColor(QString color)
 {
     SetAttrRecur(doc.documentElement(),"path","fill",color);
+    svgItem::color = color;
     m_render->load(doc.toByteArray());
+}
+
+void svgItem::changeSize(int width)
+{
+    qreal height = width * 1.0 / m_ratioValue;
+    m_size = QSize(width, height);
+    this->update();
 }
 
 QRectF svgItem::getCustomRect() const
@@ -227,6 +239,7 @@ void svgItem::mouseMoveMoveOperator(const QPointF &scenePos, const QPointF &loac
 
     this->setPos(m_startPos + QPointF(xInterval, yInterval));
     this->update();
+
 }
 
 void svgItem::mouseMoveResizeOperator(const QPointF &scenePos, const QPointF &loacalPos)

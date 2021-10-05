@@ -8,7 +8,9 @@
 #define BKGITEM_H
 
 #include <QGraphicsItem>
+#include <QGraphicsSceneMouseEvent>
 #include <QPainter>
+#include <QDebug>
 
 class BkgItem : public QObject,public QGraphicsItem
 {
@@ -26,7 +28,11 @@ public:
     int width();
     int height();
     void changeColor(QString color);
+    void changeSize(int width);
+signals:
+    void sync(int size,QString color);
 protected:
+    void mouseReleaseEvent(QGraphicsSceneMouseEvent *event) override;
     QRectF boundingRect() const override;
     QPainterPath shape() const override;
     void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget = nullptr) override;

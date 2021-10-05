@@ -45,6 +45,20 @@ void BkgItem::changeColor(QString color)
     m_color = color;
 }
 
+void BkgItem::changeSize(int width)
+{
+    qreal height = 200;
+    if(m_mode == sizhe)
+        height = width;
+    m_size=QSize(width,height);
+    this->update();
+}
+
+void BkgItem::mouseReleaseEvent(QGraphicsSceneMouseEvent *event)
+{
+    emit sync(m_size.width(),m_color.name());
+}
+
 QRectF BkgItem::boundingRect() const
 {
     QPointF centerPos(0, 0);
