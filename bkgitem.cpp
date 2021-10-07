@@ -1,3 +1,21 @@
+/**
+* @projectName   simulation
+* @brief         折法模板控件
+* @author        Zeki
+* @date          2021-10-07
+*/
+/**
+* @version       1.0
+* @content       添加四折模板
+* @author        Zeki
+* @date          2021-10-07
+*/
+/**
+* @version       1.1
+* @content       添加选中效果；添加换色；添加变更大小；添加二方连续模板；实现自定义信号；
+* @author        Zeki
+* @date          2021-10-07
+*/
 #include "bkgitem.h"
 
 
@@ -7,7 +25,7 @@ BkgItem::BkgItem()
     this->setFlag(QGraphicsItem::ItemIsSelectable);
     m_size.setWidth(0);m_size.setHeight(0);
     m_sizhe_size.setWidth(200);m_sizhe_size.setHeight(200);
-    m_erfang_size.setWidth(30);m_erfang_size.setHeight(50);
+    m_erfang_size.setWidth(30);m_erfang_size.setHeight(45);
 }
 
 void BkgItem::setFoldMode(BkgItem::foldMode mode)
@@ -25,6 +43,7 @@ void BkgItem::setFoldMode(BkgItem::foldMode mode)
     else return;
 
     this->m_mode = mode;
+    this->update();
     return;
 
 }
@@ -50,12 +69,15 @@ void BkgItem::changeSize(int width)
     qreal height = 200;
     if(m_mode == sizhe)
         height = width;
+    else if(m_mode == erfanglianxu)
+        height = 1.5f*width;
     m_size=QSize(width,height);
     this->update();
 }
 
 void BkgItem::mouseReleaseEvent(QGraphicsSceneMouseEvent *event)
 {
+    Q_UNUSED(event);
     emit sync(m_size.width(),m_color.name());
 }
 

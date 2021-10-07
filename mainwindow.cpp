@@ -47,15 +47,14 @@ MainWindow::~MainWindow()
 void MainWindow::on_erfangBtn_clicked()
 {
     qDebug()<<"二方连续开折";
+    bkgitem->setFoldMode(BkgItem::erfanglianxu);
 
 }
 
 void MainWindow::on_sizheBtn_clicked()
 {
     qDebug()<<"四折";
-    QPolygonF poly;
-    poly<<QPointF(0,0)<<QPoint(30,30)<<QPoint(0,60);
-
+    bkgitem->setFoldMode(BkgItem::sizhe);
 }
 
 
