@@ -37,7 +37,32 @@ svgItem::svgItem()
     initIcon();
 
     m_size = QSize(m_render->boundsOnElement("svg").width(),m_render->boundsOnElement("svg").height());
+    this->update();
+}
 
+svgItem::svgItem(QString svgName)
+{
+    m_render = new QSvgRenderer;
+
+    //读取svg
+    file.setFileName(":/icon/E:/ENTERTAIN/Picture/icon/fillWhite/"+svgName+".svg");
+    file.open(QIODevice::ReadOnly);
+    QByteArray svgData = file.readAll();
+    doc.setContent(svgData);
+    m_render->load(svgData);
+    file.close();
+
+    //同步颜色
+    QDomElement root = doc.documentElement();
+    //if(root.hasAttribute("path"))
+    qDebug()<<doc.elementsByTagName("path").at(0).toElement().attribute("fill");
+    color = doc.elementsByTagName("path").at(0).toElement().attribute("fill");
+
+
+    this->setFlag(QGraphicsItem::ItemIsSelectable);
+    initIcon();
+
+    m_size = QSize(m_render->boundsOnElement("svg").width(),m_render->boundsOnElement("svg").height());
 }
 
 svgItem::~svgItem()

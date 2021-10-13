@@ -29,6 +29,7 @@ public:
     int height();
     void changeColor(QString color);
     void changeSize(int width);
+    int getMode();
 signals:
     void sync(int size,QString color);
 protected:

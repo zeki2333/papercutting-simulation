@@ -51,6 +51,7 @@ private:
     QGraphicsScene *scene;
     QGraphicsRectItem *rectbg;
     void sifangduizhe(const Mat& shuru);
+    void erfangkaizhe(const Mat& shuru);
     void imageAdjust(const Mat& shuru,Mat& shuchu);
     BkgItem *bkgitem;
 };

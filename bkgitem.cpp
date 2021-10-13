@@ -75,6 +75,11 @@ void BkgItem::changeSize(int width)
     this->update();
 }
 
+int BkgItem::getMode()
+{
+    return m_mode;
+}
+
 void BkgItem::mouseReleaseEvent(QGraphicsSceneMouseEvent *event)
 {
     Q_UNUSED(event);

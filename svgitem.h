@@ -13,6 +13,7 @@ class svgItem : public QObject,public QGraphicsItem
     Q_OBJECT
 public:
     svgItem();
+    svgItem(QString svgName);
     ~svgItem();
     enum ItemOperator
         {
