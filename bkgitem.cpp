@@ -26,6 +26,7 @@ BkgItem::BkgItem()
     m_size.setWidth(0);m_size.setHeight(0);
     m_sizhe_size.setWidth(200);m_sizhe_size.setHeight(200);
     m_erfang_size.setWidth(30);m_erfang_size.setHeight(45);
+    m_bazhe_size.setWidth(200);m_bazhe_size.setHeight(200);
 }
 
 void BkgItem::setFoldMode(BkgItem::foldMode mode)
@@ -39,6 +40,11 @@ void BkgItem::setFoldMode(BkgItem::foldMode mode)
     {
         m_size.setWidth(m_erfang_size.width());
         m_size.setHeight(m_erfang_size.height());
+    }
+    else if(mode == bazhe)
+    {
+        m_size.setWidth(m_bazhe_size.width());
+        m_size.setHeight(m_bazhe_size.height());
     }
     else return;
 
@@ -71,6 +77,8 @@ void BkgItem::changeSize(int width)
         height = width;
     else if(m_mode == erfanglianxu)
         height = 1.5f*width;
+    else if(m_mode == bazhe)
+        height = width;
     m_size=QSize(width,height);
     this->update();
 }
@@ -117,7 +125,17 @@ void BkgItem::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, Q
     QRectF rect = boundingRect();
     painter->setPen(pen);
     painter->setBrush(brush);
-    painter->drawRect(rect);
+    if(m_mode!=bazhe)
+        painter->drawRect(rect);
+    else
+    {
+        QPainterPath TrianglePath;
+        TrianglePath.moveTo(rect.bottomLeft());
+        TrianglePath.lineTo(rect.topLeft());
+        TrianglePath.lineTo(rect.topRight());
+        TrianglePath.lineTo(rect.bottomLeft());
+        painter->fillPath(TrianglePath,brush);
+    }
 
     if(!this->isSelected())
         return;

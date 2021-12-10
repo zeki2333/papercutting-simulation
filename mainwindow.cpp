@@ -15,7 +15,6 @@ MainWindow::MainWindow(QWidget *parent)
 
     scene = new QGraphicsScene;
 
-    //CustomItem *item = new CustomItem;
     bkgitem = new BkgItem;
 
     bkgitem->setFoldMode(BkgItem::sizhe);
@@ -24,7 +23,6 @@ MainWindow::MainWindow(QWidget *parent)
 
     //test svg
     svgItem *svg = new svgItem;
-
 
     scene->setSceneRect(-150,-150,300,300);
     scene->addItem(bkgitem);
@@ -57,6 +55,11 @@ void MainWindow::on_sizheBtn_clicked()
     bkgitem->setFoldMode(BkgItem::sizhe);
 }
 
+void MainWindow::on_bazheBtn_clicked()
+{
+    qDebug()<<"八折";
+    bkgitem->setFoldMode(BkgItem::bazhe);
+}
 
 void MainWindow::on_roundHoleBtn_clicked()
 {
@@ -141,6 +144,7 @@ void MainWindow::erfangkaizhe(const Mat &shuru)
     namedWindow("二方连续开折",WINDOW_AUTOSIZE);
     imshow("二方连续对折", combine3);
 }
+
 /**
  * @brief MainWindow::imageAdjust 将图像调整为220X200大小后再裁剪边缘得到200X200大小的图像
  * @param shuru
@@ -212,3 +216,4 @@ void MainWindow::on_sizeBox_valueChanged(int arg1)
         svg->changeSize(arg1);
     }
 }
+

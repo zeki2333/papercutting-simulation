@@ -21,7 +21,8 @@ public:
     enum foldMode{
         none,
         sizhe,
-        erfanglianxu
+        erfanglianxu,
+        bazhe
     };
     void setFoldMode(foldMode mode);
     foldMode m_mode;
@@ -46,6 +47,7 @@ private:
     QSize m_size;
     QSize m_sizhe_size;
     QSize m_erfang_size;
+    QSize m_bazhe_size;
     int m_nInterval = 10;
     QColor m_color = Qt::red;
 };

@@ -305,6 +305,13 @@
              </widget>
             </item>
             <item>
+             <widget class="QRadioButton" name="bazheBtn">
+              <property name="text">
+               <string>八折</string>
+              </property>
+             </widget>
+            </item>
+            <item>
              <widget class="QRadioButton" name="erfangBtn">
               <property name="text">
                <string>二方连续开折</string>

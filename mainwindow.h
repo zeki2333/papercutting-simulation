@@ -8,7 +8,6 @@
 #include <opencv2/opencv.hpp>
 #include <opencv2/imgproc/imgproc.hpp>
 #include <opencv2/imgproc/types_c.h>
-#include "CustomItem.h"
 #include "bkgitem.h"
 #include "svgitem.h"
 
@@ -41,7 +40,10 @@ private slots:
     void on_simulateBtn_clicked();
 
     void on_colorBtn_clicked();
+
     void on_sizeBox_valueChanged(int arg1);
+
+    void on_bazheBtn_clicked();
 
 public slots:
     void syncProperty(int size,QString color);
