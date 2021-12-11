@@ -18,6 +18,7 @@ DEFINES += QT_DEPRECATED_WARNINGS
 SOURCES += \
     CustomItem.cpp \
     bkgitem.cpp \
+    callPython.cpp \
     main.cpp \
     mainwindow.cpp \
     svgitem.cpp
@@ -59,5 +60,7 @@ LIBS += -LD:\ProgramData\OpenCV\opencv\buildForQt\install\x64\mingw\bin \
         -llibopencv_photo453 \
         -llibopencv_stitching453 \
         -llibopencv_video453 \
-        -llibopencv_videoio453
+        -llibopencv_videoio453\
 }
+INCLUDEPATH += -I E:\APP\anaconda3\include
+LIBS += -LE:\APP\anaconda3\libs -lpython38
