@@ -45,6 +45,33 @@ private slots:
 
     void on_bazheBtn_clicked();
 
+    void on_waterBtn_clicked();
+
+
+    void on_flowerBtn_clicked();
+
+    void on_curveBtn_clicked();
+
+    void on_flower2Btn_clicked();
+
+    void on_triangleBtn_clicked();
+
+    void on_flower3Btn_clicked();
+
+    void on_willow2Btn_clicked();
+
+    void on_edgeBtn_clicked();
+
+    void on_sawtoothBtn_clicked();
+
+    void on_sawtooth2Btn_clicked();
+
+    void on_moon2Btn_clicked();
+
+    void on_sawtooth3Btn_clicked();
+
+    void on_wuzheBtn_clicked();
+
 public slots:
     void syncProperty(int size,QString color);
 private:
@@ -56,5 +83,7 @@ private:
     void erfangkaizhe(const Mat& shuru);
     void imageAdjust(const Mat& shuru,Mat& shuchu);
     BkgItem *bkgitem;
+
+    int initPython();
 };
 #endif // MAINWINDOW_H

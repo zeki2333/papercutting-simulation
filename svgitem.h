@@ -8,12 +8,17 @@
 #include <QSvgRenderer>
 #include <QFile>
 
+#include <QSqlQuery>
+#include <QSqlQueryModel>
+#include <QSqlError>
+
 class svgItem : public QObject,public QGraphicsItem
 {
     Q_OBJECT
 public:
     svgItem();
     svgItem(QString svgName);
+    svgItem(int id);
     ~svgItem();
     enum ItemOperator
         {

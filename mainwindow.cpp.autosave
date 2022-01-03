@@ -327,7 +327,7 @@ void MainWindow::on_sawtooth3Btn_clicked()
     scene->addItem(curve);
 }
 
-int MainWindow::initPython()
+void MainWindow::initPython()
 {
     Py_SetPythonHome(L"E:/APP/anaconda3");
     Py_Initialize();

@@ -18,7 +18,6 @@
 */
 #include "bkgitem.h"
 
-
 BkgItem::BkgItem()
 {
     this->m_mode = none;
@@ -27,6 +26,7 @@ BkgItem::BkgItem()
     m_sizhe_size.setWidth(200);m_sizhe_size.setHeight(200);
     m_erfang_size.setWidth(30);m_erfang_size.setHeight(45);
     m_bazhe_size.setWidth(200);m_bazhe_size.setHeight(200);
+    m_wuzhe_size.setWidth(100);m_wuzhe_size.setHeight(100);
 }
 
 void BkgItem::setFoldMode(BkgItem::foldMode mode)
@@ -45,6 +45,11 @@ void BkgItem::setFoldMode(BkgItem::foldMode mode)
     {
         m_size.setWidth(m_bazhe_size.width());
         m_size.setHeight(m_bazhe_size.height());
+    }
+    else if(mode == wuzhe)
+    {
+        m_size.setWidth(m_wuzhe_size.width());
+        m_size.setHeight(m_wuzhe_size.height());
     }
     else return;
 
@@ -78,6 +83,8 @@ void BkgItem::changeSize(int width)
     else if(m_mode == erfanglianxu)
         height = 1.5f*width;
     else if(m_mode == bazhe)
+        height = width;
+    else if(m_mode == wuzhe)
         height = width;
     m_size=QSize(width,height);
     this->update();
@@ -125,16 +132,33 @@ void BkgItem::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, Q
     QRectF rect = boundingRect();
     painter->setPen(pen);
     painter->setBrush(brush);
-    if(m_mode!=bazhe)
-        painter->drawRect(rect);
-    else
+    //八折 五折需要单独用QPainter画
+    if(m_mode == bazhe)
     {
         QPainterPath TrianglePath;
         TrianglePath.moveTo(rect.bottomLeft());
         TrianglePath.lineTo(rect.topLeft());
         TrianglePath.lineTo(rect.topRight());
         TrianglePath.lineTo(rect.bottomLeft());
+        qDebug()<<rect.topLeft().x()<<rect.topLeft().y();
         painter->fillPath(TrianglePath,brush);
+    }
+    else if(m_mode == wuzhe)
+    {
+        qDebug()<<"kuangao"<<rect.width()<<"  "<<rect.height();
+        qDebug()<<"xy"<<rect.bottomRight().rx()<<"  "<<rect.bottomRight().rx();
+        qDebug()<<'x'<<rect.width()*cos(3./4.*M_PI);
+        QPainterPath wubanPath;
+        wubanPath.moveTo(rect.bottomRight());
+        wubanPath.lineTo(QPointF(rect.bottomRight().rx()+rect.height()*cos(0.7*M_PI),rect.bottomRight().ry()-rect.height()*sin(0.7*M_PI)));
+        wubanPath.lineTo(QPointF(rect.bottomRight().rx()+rect.height()*cos(0.6*M_PI),rect.bottomRight().ry()-rect.height()*sin(0.6*M_PI)));
+        wubanPath.lineTo(rect.topRight());
+        wubanPath.lineTo(rect.bottomRight());
+        painter->fillPath(wubanPath,brush);
+    }
+    else
+    {
+        painter->drawRect(rect);
     }
 
     if(!this->isSelected())

@@ -285,6 +285,9 @@
             </property>
             <item>
              <widget class="QRadioButton" name="radioButton">
+              <property name="cursor">
+               <cursorShape>PointingHandCursor</cursorShape>
+              </property>
               <property name="text">
                <string>对折</string>
               </property>
@@ -292,13 +295,19 @@
             </item>
             <item>
              <widget class="QRadioButton" name="sizheBtn">
+              <property name="cursor">
+               <cursorShape>PointingHandCursor</cursorShape>
+              </property>
               <property name="text">
                <string>四折</string>
               </property>
              </widget>
             </item>
             <item>
-             <widget class="QRadioButton" name="radioButton_3">
+             <widget class="QRadioButton" name="wuzheBtn">
+              <property name="cursor">
+               <cursorShape>PointingHandCursor</cursorShape>
+              </property>
               <property name="text">
                <string>五瓣形折叠</string>
               </property>
@@ -306,6 +315,9 @@
             </item>
             <item>
              <widget class="QRadioButton" name="bazheBtn">
+              <property name="cursor">
+               <cursorShape>PointingHandCursor</cursorShape>
+              </property>
               <property name="text">
                <string>八折</string>
               </property>
@@ -313,6 +325,9 @@
             </item>
             <item>
              <widget class="QRadioButton" name="erfangBtn">
+              <property name="cursor">
+               <cursorShape>PointingHandCursor</cursorShape>
+              </property>
               <property name="text">
                <string>二方连续开折</string>
               </property>
@@ -409,6 +424,9 @@
                 <verstretch>0</verstretch>
                </sizepolicy>
               </property>
+              <property name="cursor">
+               <cursorShape>PointingHandCursor</cursorShape>
+              </property>
               <property name="styleSheet">
                <string notr="true">background:transparent;</string>
               </property>
@@ -502,9 +520,9 @@
         </widget>
        </item>
        <item>
-        <widget class="QFrame" name="frame_3">
+        <widget class="QFrame" name="BtnFrame">
          <property name="sizePolicy">
-          <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+          <sizepolicy hsizetype="Preferred" vsizetype="Maximum">
            <horstretch>0</horstretch>
            <verstretch>0</verstretch>
           </sizepolicy>
@@ -546,8 +564,11 @@
           <property name="verticalSpacing">
            <number>5</number>
           </property>
-          <item row="0" column="2">
-           <widget class="QPushButton" name="moonBtn">
+          <item row="0" column="4">
+           <widget class="QPushButton" name="willowBtn">
+            <property name="cursor">
+             <cursorShape>PointingHandCursor</cursorShape>
+            </property>
             <property name="styleSheet">
              <string notr="true">background:transparent;</string>
             </property>
@@ -556,7 +577,122 @@
             </property>
             <property name="icon">
              <iconset resource="icon.qrc">
-              <normaloff>:/icon/E:/ENTERTAIN/Picture/icon/moon.png</normaloff>:/icon/E:/ENTERTAIN/Picture/icon/moon.png</iconset>
+              <normaloff>:/icon/E:/ENTERTAIN/Picture/icon/4.png</normaloff>:/icon/E:/ENTERTAIN/Picture/icon/4.png</iconset>
+            </property>
+            <property name="iconSize">
+             <size>
+              <width>60</width>
+              <height>60</height>
+             </size>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="2">
+           <widget class="QPushButton" name="flowerBtn">
+            <property name="cursor">
+             <cursorShape>PointingHandCursor</cursorShape>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">QPushButton{background:transparent;}</string>
+            </property>
+            <property name="text">
+             <string/>
+            </property>
+            <property name="icon">
+             <iconset resource="icon.qrc">
+              <normaloff>:/icon/E:/ENTERTAIN/Picture/icon/flower.png</normaloff>:/icon/E:/ENTERTAIN/Picture/icon/flower.png</iconset>
+            </property>
+            <property name="iconSize">
+             <size>
+              <width>60</width>
+              <height>60</height>
+             </size>
+            </property>
+           </widget>
+          </item>
+          <item row="2" column="1">
+           <widget class="QPushButton" name="triangleBtn">
+            <property name="cursor">
+             <cursorShape>PointingHandCursor</cursorShape>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">QPushButton{background:transparent;}</string>
+            </property>
+            <property name="text">
+             <string/>
+            </property>
+            <property name="icon">
+             <iconset resource="icon.qrc">
+              <normaloff>:/icon/E:/ENTERTAIN/Picture/icon/triangle.png</normaloff>:/icon/E:/ENTERTAIN/Picture/icon/triangle.png</iconset>
+            </property>
+            <property name="iconSize">
+             <size>
+              <width>60</width>
+              <height>60</height>
+             </size>
+            </property>
+           </widget>
+          </item>
+          <item row="2" column="3">
+           <widget class="QPushButton" name="willow2Btn">
+            <property name="cursor">
+             <cursorShape>PointingHandCursor</cursorShape>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">QPushButton{background:transparent;}</string>
+            </property>
+            <property name="text">
+             <string/>
+            </property>
+            <property name="icon">
+             <iconset resource="icon.qrc">
+              <normaloff>:/icon/E:/ENTERTAIN/Picture/icon/willow2.png</normaloff>:/icon/E:/ENTERTAIN/Picture/icon/willow2.png</iconset>
+            </property>
+            <property name="iconSize">
+             <size>
+              <width>60</width>
+              <height>60</height>
+             </size>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="3">
+           <widget class="QPushButton" name="curveBtn">
+            <property name="cursor">
+             <cursorShape>PointingHandCursor</cursorShape>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">QPushButton{background:transparent;}</string>
+            </property>
+            <property name="text">
+             <string/>
+            </property>
+            <property name="icon">
+             <iconset resource="icon.qrc">
+              <normaloff>:/icon/E:/ENTERTAIN/Picture/icon/curve.png</normaloff>:/icon/E:/ENTERTAIN/Picture/icon/curve.png</iconset>
+            </property>
+            <property name="iconSize">
+             <size>
+              <width>60</width>
+              <height>60</height>
+             </size>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="1">
+           <widget class="QPushButton" name="waterBtn">
+            <property name="cursor">
+             <cursorShape>PointingHandCursor</cursorShape>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">QPushButton{background:transparent;}</string>
+            </property>
+            <property name="text">
+             <string/>
+            </property>
+            <property name="icon">
+             <iconset resource="icon.qrc">
+              <normaloff>:/icon/E:/ENTERTAIN/Picture/icon/water.png</normaloff>:/icon/E:/ENTERTAIN/Picture/icon/water.png</iconset>
             </property>
             <property name="iconSize">
              <size>
@@ -568,6 +704,9 @@
           </item>
           <item row="0" column="1">
            <widget class="QPushButton" name="roundHoleBtn">
+            <property name="cursor">
+             <cursorShape>PointingHandCursor</cursorShape>
+            </property>
             <property name="styleSheet">
              <string notr="true">QPushButton{background:transparent;}</string>
             </property>
@@ -588,6 +727,9 @@
           </item>
           <item row="0" column="3">
            <widget class="QPushButton" name="commaBtn">
+            <property name="cursor">
+             <cursorShape>PointingHandCursor</cursorShape>
+            </property>
             <property name="styleSheet">
              <string notr="true">background:transparent;</string>
             </property>
@@ -606,8 +748,34 @@
             </property>
            </widget>
           </item>
-          <item row="0" column="4">
-           <widget class="QPushButton" name="willowBtn">
+          <item row="1" column="4">
+           <widget class="QPushButton" name="flower2Btn">
+            <property name="cursor">
+             <cursorShape>PointingHandCursor</cursorShape>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">QPushButton{background:transparent;}</string>
+            </property>
+            <property name="text">
+             <string/>
+            </property>
+            <property name="icon">
+             <iconset resource="icon.qrc">
+              <normaloff>:/icon/E:/ENTERTAIN/Picture/icon/flower2.png</normaloff>:/icon/E:/ENTERTAIN/Picture/icon/flower2.png</iconset>
+            </property>
+            <property name="iconSize">
+             <size>
+              <width>60</width>
+              <height>60</height>
+             </size>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="2">
+           <widget class="QPushButton" name="moonBtn">
+            <property name="cursor">
+             <cursorShape>PointingHandCursor</cursorShape>
+            </property>
             <property name="styleSheet">
              <string notr="true">background:transparent;</string>
             </property>
@@ -616,7 +784,145 @@
             </property>
             <property name="icon">
              <iconset resource="icon.qrc">
-              <normaloff>:/icon/E:/ENTERTAIN/Picture/icon/4.png</normaloff>:/icon/E:/ENTERTAIN/Picture/icon/4.png</iconset>
+              <normaloff>:/icon/E:/ENTERTAIN/Picture/icon/moon.png</normaloff>:/icon/E:/ENTERTAIN/Picture/icon/moon.png</iconset>
+            </property>
+            <property name="iconSize">
+             <size>
+              <width>60</width>
+              <height>60</height>
+             </size>
+            </property>
+           </widget>
+          </item>
+          <item row="2" column="2">
+           <widget class="QPushButton" name="flower3Btn">
+            <property name="cursor">
+             <cursorShape>PointingHandCursor</cursorShape>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">QPushButton{background:transparent;}</string>
+            </property>
+            <property name="text">
+             <string/>
+            </property>
+            <property name="icon">
+             <iconset resource="icon.qrc">
+              <normaloff>:/icon/E:/ENTERTAIN/Picture/icon/flower3.png</normaloff>:/icon/E:/ENTERTAIN/Picture/icon/flower3.png</iconset>
+            </property>
+            <property name="iconSize">
+             <size>
+              <width>60</width>
+              <height>60</height>
+             </size>
+            </property>
+           </widget>
+          </item>
+          <item row="2" column="4">
+           <widget class="QPushButton" name="edgeBtn">
+            <property name="cursor">
+             <cursorShape>PointingHandCursor</cursorShape>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">QPushButton{background:transparent;}QPushButton{background:transparent;}</string>
+            </property>
+            <property name="text">
+             <string/>
+            </property>
+            <property name="icon">
+             <iconset resource="icon.qrc">
+              <normaloff>:/icon/E:/ENTERTAIN/Picture/icon/edge.png</normaloff>:/icon/E:/ENTERTAIN/Picture/icon/edge.png</iconset>
+            </property>
+            <property name="iconSize">
+             <size>
+              <width>60</width>
+              <height>60</height>
+             </size>
+            </property>
+           </widget>
+          </item>
+          <item row="3" column="1">
+           <widget class="QPushButton" name="sawtoothBtn">
+            <property name="cursor">
+             <cursorShape>PointingHandCursor</cursorShape>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">QPushButton{background:transparent;}</string>
+            </property>
+            <property name="text">
+             <string/>
+            </property>
+            <property name="icon">
+             <iconset resource="icon.qrc">
+              <normaloff>:/icon/E:/ENTERTAIN/Picture/icon/sawtooth.png</normaloff>:/icon/E:/ENTERTAIN/Picture/icon/sawtooth.png</iconset>
+            </property>
+            <property name="iconSize">
+             <size>
+              <width>60</width>
+              <height>60</height>
+             </size>
+            </property>
+           </widget>
+          </item>
+          <item row="3" column="2">
+           <widget class="QPushButton" name="sawtooth2Btn">
+            <property name="cursor">
+             <cursorShape>PointingHandCursor</cursorShape>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">QPushButton{background:transparent;}</string>
+            </property>
+            <property name="text">
+             <string/>
+            </property>
+            <property name="icon">
+             <iconset resource="icon.qrc">
+              <normaloff>:/icon/E:/ENTERTAIN/Picture/icon/sawtooth2.png</normaloff>:/icon/E:/ENTERTAIN/Picture/icon/sawtooth2.png</iconset>
+            </property>
+            <property name="iconSize">
+             <size>
+              <width>60</width>
+              <height>60</height>
+             </size>
+            </property>
+           </widget>
+          </item>
+          <item row="3" column="3">
+           <widget class="QPushButton" name="moon2Btn">
+            <property name="cursor">
+             <cursorShape>PointingHandCursor</cursorShape>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">QPushButton{background:transparent;}</string>
+            </property>
+            <property name="text">
+             <string/>
+            </property>
+            <property name="icon">
+             <iconset resource="icon.qrc">
+              <normaloff>:/icon/E:/ENTERTAIN/Picture/icon/moon2.png</normaloff>:/icon/E:/ENTERTAIN/Picture/icon/moon2.png</iconset>
+            </property>
+            <property name="iconSize">
+             <size>
+              <width>60</width>
+              <height>60</height>
+             </size>
+            </property>
+           </widget>
+          </item>
+          <item row="3" column="4">
+           <widget class="QPushButton" name="sawtooth3Btn">
+            <property name="cursor">
+             <cursorShape>PointingHandCursor</cursorShape>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">QPushButton{background:transparent;}</string>
+            </property>
+            <property name="text">
+             <string/>
+            </property>
+            <property name="icon">
+             <iconset resource="icon.qrc">
+              <normaloff>:/icon/E:/ENTERTAIN/Picture/icon/sawtooth3.png</normaloff>:/icon/E:/ENTERTAIN/Picture/icon/sawtooth3.png</iconset>
             </property>
             <property name="iconSize">
              <size>
@@ -634,13 +940,10 @@
          <property name="orientation">
           <enum>Qt::Vertical</enum>
          </property>
-         <property name="sizeType">
-          <enum>QSizePolicy::Fixed</enum>
-         </property>
          <property name="sizeHint" stdset="0">
           <size>
            <width>20</width>
-           <height>300</height>
+           <height>40</height>
           </size>
          </property>
         </spacer>

@@ -22,6 +22,7 @@ svgItem::svgItem()
     file.setFileName(":/icon/E:/ENTERTAIN/Picture/icon/Vector.svg");
     file.open(QIODevice::ReadOnly);
     QByteArray svgData = file.readAll();
+    qDebug()<<svgData;
     doc.setContent(svgData);
     m_render->load(svgData);
     file.close();
@@ -63,6 +64,58 @@ svgItem::svgItem(QString svgName)
     initIcon();
 
     m_size = QSize(m_render->boundsOnElement("svg").width(),m_render->boundsOnElement("svg").height());
+}
+
+svgItem::svgItem(int id)
+{
+    m_render = new QSvgRenderer;
+
+    //数据库读取svg
+    QSqlDatabase db;//建立和数据库的连接
+
+    db = QSqlDatabase::addDatabase("QODBC");
+    //设置数据库名字
+    db.setHostName("127.0.0.1");
+    db.setPort(3306);
+    db.setDatabaseName("svgSource");
+    db.setUserName("paperfold");
+    db.setPassword("123123");
+    if(db.open() == true)
+    {
+        //QMessageBox::information(this,"infor","success");
+        qDebug("打开成功");
+        QString str = QString("select * from img where id=%1").arg(id);
+        QSqlQuery query(str);
+        while(query.next())
+        {
+            //QString country = query.value(1).toString();
+            QByteArray arr = query.value(1).toByteArray();
+            doc.setContent(arr);
+            m_render->load(arr);
+        }
+
+    }
+    else
+    {
+        //QMessageBox::information(this,"infor","failed");
+        qDebug("打开失败");
+        return;
+    }
+
+
+
+    //同步颜色
+    QDomElement root = doc.documentElement();
+    //if(root.hasAttribute("path"))
+    qDebug()<<doc.elementsByTagName("path").at(0).toElement().attribute("fill");
+    color = doc.elementsByTagName("path").at(0).toElement().attribute("fill");
+
+
+    this->setFlag(QGraphicsItem::ItemIsSelectable);
+    initIcon();
+
+    m_size = QSize(m_render->boundsOnElement("svg").width(),m_render->boundsOnElement("svg").height());
+    this->update();
 }
 
 svgItem::~svgItem()
