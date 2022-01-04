@@ -72,6 +72,8 @@ private slots:
 
     void on_wuzheBtn_clicked();
 
+    void on_NzheBtn_clicked();
+
 public slots:
     void syncProperty(int size,QString color);
 private:

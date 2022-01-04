@@ -285,6 +285,11 @@
             </property>
             <item>
              <widget class="QRadioButton" name="radioButton">
+              <property name="font">
+               <font>
+                <pointsize>12</pointsize>
+               </font>
+              </property>
               <property name="cursor">
                <cursorShape>PointingHandCursor</cursorShape>
               </property>
@@ -295,6 +300,11 @@
             </item>
             <item>
              <widget class="QRadioButton" name="sizheBtn">
+              <property name="font">
+               <font>
+                <pointsize>12</pointsize>
+               </font>
+              </property>
               <property name="cursor">
                <cursorShape>PointingHandCursor</cursorShape>
               </property>
@@ -305,6 +315,11 @@
             </item>
             <item>
              <widget class="QRadioButton" name="wuzheBtn">
+              <property name="font">
+               <font>
+                <pointsize>12</pointsize>
+               </font>
+              </property>
               <property name="cursor">
                <cursorShape>PointingHandCursor</cursorShape>
               </property>
@@ -315,6 +330,11 @@
             </item>
             <item>
              <widget class="QRadioButton" name="bazheBtn">
+              <property name="font">
+               <font>
+                <pointsize>12</pointsize>
+               </font>
+              </property>
               <property name="cursor">
                <cursorShape>PointingHandCursor</cursorShape>
               </property>
@@ -325,11 +345,28 @@
             </item>
             <item>
              <widget class="QRadioButton" name="erfangBtn">
+              <property name="font">
+               <font>
+                <pointsize>12</pointsize>
+               </font>
+              </property>
               <property name="cursor">
                <cursorShape>PointingHandCursor</cursorShape>
               </property>
               <property name="text">
                <string>二方连续开折</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QRadioButton" name="NzheBtn">
+              <property name="font">
+               <font>
+                <pointsize>12</pointsize>
+               </font>
+              </property>
+              <property name="text">
+               <string>任意折</string>
               </property>
              </widget>
             </item>

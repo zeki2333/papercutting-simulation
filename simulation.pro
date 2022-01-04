@@ -18,7 +18,6 @@ DEFINES += QT_DEPRECATED_WARNINGS
 SOURCES += \
     CustomItem.cpp \
     bkgitem.cpp \
-    callPython.cpp \
     main.cpp \
     mainwindow.cpp \
     svgitem.cpp

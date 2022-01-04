@@ -21,12 +21,14 @@
 BkgItem::BkgItem()
 {
     this->m_mode = none;
+    this->m_N = 4;
     this->setFlag(QGraphicsItem::ItemIsSelectable);
     m_size.setWidth(0);m_size.setHeight(0);
     m_sizhe_size.setWidth(200);m_sizhe_size.setHeight(200);
     m_erfang_size.setWidth(30);m_erfang_size.setHeight(45);
     m_bazhe_size.setWidth(200);m_bazhe_size.setHeight(200);
     m_wuzhe_size.setWidth(100);m_wuzhe_size.setHeight(100);
+    m_Nzhe_size.setWidth(150);m_Nzhe_size.setHeight(150);
 }
 
 void BkgItem::setFoldMode(BkgItem::foldMode mode)
@@ -50,6 +52,11 @@ void BkgItem::setFoldMode(BkgItem::foldMode mode)
     {
         m_size.setWidth(m_wuzhe_size.width());
         m_size.setHeight(m_wuzhe_size.height());
+    }
+    else if(mode == Nzhe)
+    {
+        m_size.setWidth(m_Nzhe_size.width());
+        m_size.setHeight(m_Nzhe_size.height());
     }
     else return;
 
@@ -84,7 +91,7 @@ void BkgItem::changeSize(int width)
         height = 1.5f*width;
     else if(m_mode == bazhe)
         height = width;
-    else if(m_mode == wuzhe)
+    else if(m_mode == wuzhe||m_mode == Nzhe)
         height = width;
     m_size=QSize(width,height);
     this->update();
@@ -132,7 +139,7 @@ void BkgItem::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, Q
     QRectF rect = boundingRect();
     painter->setPen(pen);
     painter->setBrush(brush);
-    //八折 五折需要单独用QPainter画
+    //八折 五折 N折需要单独用QPainter画
     if(m_mode == bazhe)
     {
         QPainterPath TrianglePath;
@@ -145,9 +152,6 @@ void BkgItem::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, Q
     }
     else if(m_mode == wuzhe)
     {
-        qDebug()<<"kuangao"<<rect.width()<<"  "<<rect.height();
-        qDebug()<<"xy"<<rect.bottomRight().rx()<<"  "<<rect.bottomRight().rx();
-        qDebug()<<'x'<<rect.width()*cos(3./4.*M_PI);
         QPainterPath wubanPath;
         wubanPath.moveTo(rect.bottomRight());
         wubanPath.lineTo(QPointF(rect.bottomRight().rx()+rect.height()*cos(0.7*M_PI),rect.bottomRight().ry()-rect.height()*sin(0.7*M_PI)));
@@ -155,6 +159,15 @@ void BkgItem::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, Q
         wubanPath.lineTo(rect.topRight());
         wubanPath.lineTo(rect.bottomRight());
         painter->fillPath(wubanPath,brush);
+    }
+    else if(m_mode == Nzhe)
+    {
+        QPainterPath NzhePath;
+        NzhePath.moveTo(rect.bottomRight());
+        NzhePath.lineTo(rect.topRight());
+        NzhePath.arcTo(rect.topLeft().rx(),rect.topLeft().ry(),2*rect.width(),2*rect.height(),90,360/m_N);
+        NzhePath.lineTo(rect.bottomRight());
+        painter->fillPath(NzhePath,brush);
     }
     else
     {

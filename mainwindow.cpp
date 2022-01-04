@@ -2,9 +2,6 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 
-
-
-
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
@@ -72,6 +69,13 @@ void MainWindow::on_bazheBtn_clicked()
 {
     qDebug()<<"八折";
     bkgitem->setFoldMode(BkgItem::bazhe);
+}
+
+
+void MainWindow::on_NzheBtn_clicked()
+{
+    qDebug()<<"N折";
+    bkgitem->setFoldMode(BkgItem::Nzhe);
 }
 
 void MainWindow::on_roundHoleBtn_clicked()
@@ -348,3 +352,4 @@ int MainWindow::initPython()
     PyObject_CallFunction(pFunhello,NULL);
     Py_Finalize();
 }
+

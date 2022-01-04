@@ -24,7 +24,8 @@ public:
         sizhe,//四折
         erfanglianxu,//二方连续
         bazhe,//八折
-        wuzhe//五折
+        wuzhe,//五折
+        Nzhe
     };
     void setFoldMode(foldMode mode);
     foldMode m_mode;
@@ -51,6 +52,8 @@ private:
     QSize m_erfang_size;
     QSize m_bazhe_size;
     QSize m_wuzhe_size;
+    QSize m_Nzhe_size;
+    int m_N;
     int m_nInterval = 10;
     QColor m_color = Qt::red;
 
