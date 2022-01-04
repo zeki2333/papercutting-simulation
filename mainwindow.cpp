@@ -248,7 +248,10 @@ void MainWindow::on_sizeBox_valueChanged(int arg1)
     }
 }
 
-
+void MainWindow::on_foldNumBox_valueChanged(int arg1)
+{
+    bkgitem->setNFoldNum(arg1);
+}
 
 
 void MainWindow::on_curveBtn_clicked()
@@ -352,4 +355,6 @@ int MainWindow::initPython()
     PyObject_CallFunction(pFunhello,NULL);
     Py_Finalize();
 }
+
+
 

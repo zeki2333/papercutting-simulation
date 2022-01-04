@@ -20,12 +20,14 @@ SOURCES += \
     bkgitem.cpp \
     main.cpp \
     mainwindow.cpp \
+    qmylabel.cpp \
     svgitem.cpp
 
 HEADERS += \
     CustomItem.h \
     bkgitem.h \
     mainwindow.h \
+    qmylabel.h \
     svgitem.h
 
 FORMS += \

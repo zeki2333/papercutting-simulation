@@ -74,6 +74,8 @@ private slots:
 
     void on_NzheBtn_clicked();
 
+    void on_foldNumBox_valueChanged(int arg1);
+
 public slots:
     void syncProperty(int size,QString color);
 private:

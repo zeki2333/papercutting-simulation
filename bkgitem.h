@@ -28,6 +28,7 @@ public:
         Nzhe
     };
     void setFoldMode(foldMode mode);
+    void setNFoldNum(int n);
     foldMode m_mode;
     int width();
     int height();

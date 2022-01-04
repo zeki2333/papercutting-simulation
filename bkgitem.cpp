@@ -66,6 +66,12 @@ void BkgItem::setFoldMode(BkgItem::foldMode mode)
 
 }
 
+void BkgItem::setNFoldNum(int n)
+{
+    m_N = n;
+    this->update();
+}
+
 int BkgItem::width()
 {
     return m_size.width();
