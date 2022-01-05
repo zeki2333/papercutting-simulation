@@ -25,7 +25,7 @@ BkgItem::BkgItem()
     this->setFlag(QGraphicsItem::ItemIsSelectable);
     m_size.setWidth(0);m_size.setHeight(0);
     m_sizhe_size.setWidth(200);m_sizhe_size.setHeight(200);
-    m_erfang_size.setWidth(30);m_erfang_size.setHeight(45);
+    m_erfang_size.setWidth(100);m_erfang_size.setHeight(150);
     m_bazhe_size.setWidth(200);m_bazhe_size.setHeight(200);
     m_wuzhe_size.setWidth(100);m_wuzhe_size.setHeight(100);
     m_Nzhe_size.setWidth(150);m_Nzhe_size.setHeight(150);

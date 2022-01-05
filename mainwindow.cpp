@@ -24,7 +24,7 @@ MainWindow::MainWindow(QWidget *parent)
     //item->setParentItem(bkgitem);
 
     //test svg
-    svgItem *svg = new svgItem;
+    svgItem *svg = new svgItem(20);
 
     scene->setSceneRect(-150,-150,300,300);
     scene->addItem(bkgitem);
@@ -357,4 +357,57 @@ int MainWindow::initPython()
 }
 
 
+void MainWindow::on_uploadBtn_clicked()
+{
+    //添加数据库驱动
+    QSqlDatabase db = QSqlDatabase::addDatabase("QODBC");
+    //设置数据库名字
+    db.setHostName("127.0.0.1");
+    db.setPort(3306);
+    db.setDatabaseName("svgSource");
+    db.setUserName("paperfold");
+    db.setPassword("123123");
+    if(db.open() == true)
+    {
+        //QMessageBox::information(this,"infor","success");
+        qDebug("打开成功");
+    }
+    else
+    {
+        //QMessageBox::information(this,"infor","failed");
+        qDebug("打开失败");
+    }
+    //查询目前纹样个数
+    QString qStr="select count(*) from img;";
+    QSqlQuery qquery(qStr);
+    int res;//获取目前纹样库的个数
+    while(qquery.next())
+    {
+        res = qquery.value(0).toInt()+1;
+        qDebug()<<res;
+    }
 
+    //插入操作
+    QSqlQuery query;
+    QString filename = QFileDialog::getOpenFileName(this,tr("Open Images"),".",tr("Image File(*.svg)"));
+    qDebug()<<"filename.toLatin1().data():"<<filename.toLatin1().data();
+    filename = filename.toLatin1().data();
+    QFile svgfile(filename);
+    svgfile.open(QIODevice::ReadOnly);
+    QByteArray svgArr = svgfile.readAll();
+    //qDebug()<<svgArr;
+    svgArr=svgArr.toHex();
+    QString queryStr = QString("INSERT INTO `img` VALUES (%1,0x%2);").arg(QString::number(res)).arg(QString(svgArr));
+    //qDebug()<<queryStr;
+
+
+    if(query.exec(queryStr)==false)
+    {
+        qDebug()<<queryStr;
+        qDebug()<<"failed";
+    }
+    else
+    {
+        qDebug()<<"插入成功";
+    }
+}

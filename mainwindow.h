@@ -5,6 +5,7 @@
 #include <QGraphicsRectItem>
 #include <QColorDialog>
 #include <QDebug>
+#include <QFileDialog>
 #include <opencv2/opencv.hpp>
 #include <opencv2/imgproc/imgproc.hpp>
 #include <opencv2/imgproc/types_c.h>
@@ -75,6 +76,8 @@ private slots:
     void on_NzheBtn_clicked();
 
     void on_foldNumBox_valueChanged(int arg1);
+
+    void on_uploadBtn_clicked();
 
 public slots:
     void syncProperty(int size,QString color);

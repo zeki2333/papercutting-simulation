@@ -345,6 +345,7 @@ void svgItem::mouseMoveResizeOperator(const QPointF &scenePos, const QPointF &lo
 void svgItem::mouseMoveRotateOperator(const QPointF &scenePos, const QPointF &loacalPos)
 {
     qDebug()<<"rotate";
+    Q_UNUSED(scenePos)
 
     // 获取并设置为单位向量
     QVector2D startVec(m_pos.x() - 0, m_pos.y() - 0);
