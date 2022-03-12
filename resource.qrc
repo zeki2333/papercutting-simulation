@@ -1,0 +1,17 @@
+<RCC>
+    <qresource prefix="/new/btn">
+        <file>round.png</file>
+        <file>cancel.png</file>
+        <file>resize.png</file>
+        <file>rotate.png</file>
+        <file>QSS_IMG/go-down-symbolic.symbolic.png</file>
+        <file>QSS_IMG/go-next-symbolic.symbolic.png</file>
+        <file>QSS_IMG/go-previous-symbolic.symbolic.png</file>
+        <file>QSS_IMG/go-up-symbolic.symbolic.png</file>
+        <file>QSS_IMG/object-select-symbolic.symbolic.png</file>
+    </qresource>
+    <qresource prefix="/new/qss">
+        <file>MacOS.qss</file>
+    </qresource>
+    <qresource prefix="/new/prefix1"/>
+</RCC>
