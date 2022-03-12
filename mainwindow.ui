@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>989</width>
-    <height>696</height>
+    <width>996</width>
+    <height>690</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -242,7 +242,7 @@
             <string>折叠方式</string>
            </property>
            <property name="icon">
-            <iconset resource="icon.qrc">
+            <iconset>
              <normaloff>:/icon/E:/ENTERTAIN/Picture/icon/fold_mode.png</normaloff>:/icon/E:/ENTERTAIN/Picture/icon/fold_mode.png</iconset>
            </property>
            <property name="iconSize">
@@ -428,7 +428,7 @@
             <string>属性</string>
            </property>
            <property name="icon">
-            <iconset resource="icon.qrc">
+            <iconset>
              <normaloff>:/icon/E:/ENTERTAIN/Picture/icon/Property.png</normaloff>:/icon/E:/ENTERTAIN/Picture/icon/Property.png</iconset>
            </property>
            <property name="iconSize">
@@ -529,7 +529,7 @@
           <string>创作区</string>
          </property>
          <property name="icon">
-          <iconset resource="icon.qrc">
+          <iconset>
            <normaloff>:/icon/E:/ENTERTAIN/Picture/icon/create_zone.png</normaloff>:/icon/E:/ENTERTAIN/Picture/icon/create_zone.png</iconset>
          </property>
          <property name="iconSize">
@@ -570,7 +570,7 @@
           <string>纹样库</string>
          </property>
          <property name="icon">
-          <iconset resource="icon.qrc">
+          <iconset>
            <normaloff>:/icon/E:/ENTERTAIN/Picture/icon/Pattern.png</normaloff>:/icon/E:/ENTERTAIN/Picture/icon/Pattern.png</iconset>
          </property>
          <property name="iconSize">
@@ -638,7 +638,7 @@
              <string/>
             </property>
             <property name="icon">
-             <iconset resource="icon.qrc">
+             <iconset>
               <normaloff>:/icon/E:/ENTERTAIN/Picture/icon/4.png</normaloff>:/icon/E:/ENTERTAIN/Picture/icon/4.png</iconset>
             </property>
             <property name="iconSize">
@@ -661,7 +661,7 @@
              <string/>
             </property>
             <property name="icon">
-             <iconset resource="icon.qrc">
+             <iconset>
               <normaloff>:/icon/E:/ENTERTAIN/Picture/icon/flower.png</normaloff>:/icon/E:/ENTERTAIN/Picture/icon/flower.png</iconset>
             </property>
             <property name="iconSize">
@@ -684,7 +684,7 @@
              <string/>
             </property>
             <property name="icon">
-             <iconset resource="icon.qrc">
+             <iconset>
               <normaloff>:/icon/E:/ENTERTAIN/Picture/icon/triangle.png</normaloff>:/icon/E:/ENTERTAIN/Picture/icon/triangle.png</iconset>
             </property>
             <property name="iconSize">
@@ -707,7 +707,7 @@
              <string/>
             </property>
             <property name="icon">
-             <iconset resource="icon.qrc">
+             <iconset>
               <normaloff>:/icon/E:/ENTERTAIN/Picture/icon/willow2.png</normaloff>:/icon/E:/ENTERTAIN/Picture/icon/willow2.png</iconset>
             </property>
             <property name="iconSize">
@@ -730,7 +730,7 @@
              <string/>
             </property>
             <property name="icon">
-             <iconset resource="icon.qrc">
+             <iconset>
               <normaloff>:/icon/E:/ENTERTAIN/Picture/icon/curve.png</normaloff>:/icon/E:/ENTERTAIN/Picture/icon/curve.png</iconset>
             </property>
             <property name="iconSize">
@@ -753,7 +753,7 @@
              <string/>
             </property>
             <property name="icon">
-             <iconset resource="icon.qrc">
+             <iconset>
               <normaloff>:/icon/E:/ENTERTAIN/Picture/icon/water.png</normaloff>:/icon/E:/ENTERTAIN/Picture/icon/water.png</iconset>
             </property>
             <property name="iconSize">
@@ -776,7 +776,7 @@
              <string/>
             </property>
             <property name="icon">
-             <iconset resource="icon.qrc">
+             <iconset>
               <normaloff>:/icon/E:/ENTERTAIN/Picture/icon/round.png</normaloff>:/icon/E:/ENTERTAIN/Picture/icon/round.png</iconset>
             </property>
             <property name="iconSize">
@@ -799,7 +799,7 @@
              <string/>
             </property>
             <property name="icon">
-             <iconset resource="icon.qrc">
+             <iconset>
               <normaloff>:/icon/E:/ENTERTAIN/Picture/icon/3.png</normaloff>:/icon/E:/ENTERTAIN/Picture/icon/3.png</iconset>
             </property>
             <property name="iconSize">
@@ -822,7 +822,7 @@
              <string/>
             </property>
             <property name="icon">
-             <iconset resource="icon.qrc">
+             <iconset>
               <normaloff>:/icon/E:/ENTERTAIN/Picture/icon/flower2.png</normaloff>:/icon/E:/ENTERTAIN/Picture/icon/flower2.png</iconset>
             </property>
             <property name="iconSize">
@@ -845,7 +845,7 @@
              <string/>
             </property>
             <property name="icon">
-             <iconset resource="icon.qrc">
+             <iconset>
               <normaloff>:/icon/E:/ENTERTAIN/Picture/icon/moon.png</normaloff>:/icon/E:/ENTERTAIN/Picture/icon/moon.png</iconset>
             </property>
             <property name="iconSize">
@@ -868,7 +868,7 @@
              <string/>
             </property>
             <property name="icon">
-             <iconset resource="icon.qrc">
+             <iconset>
               <normaloff>:/icon/E:/ENTERTAIN/Picture/icon/flower3.png</normaloff>:/icon/E:/ENTERTAIN/Picture/icon/flower3.png</iconset>
             </property>
             <property name="iconSize">
@@ -891,7 +891,7 @@
              <string/>
             </property>
             <property name="icon">
-             <iconset resource="icon.qrc">
+             <iconset>
               <normaloff>:/icon/E:/ENTERTAIN/Picture/icon/edge.png</normaloff>:/icon/E:/ENTERTAIN/Picture/icon/edge.png</iconset>
             </property>
             <property name="iconSize">
@@ -914,7 +914,7 @@
              <string/>
             </property>
             <property name="icon">
-             <iconset resource="icon.qrc">
+             <iconset>
               <normaloff>:/icon/E:/ENTERTAIN/Picture/icon/sawtooth.png</normaloff>:/icon/E:/ENTERTAIN/Picture/icon/sawtooth.png</iconset>
             </property>
             <property name="iconSize">
@@ -937,7 +937,7 @@
              <string/>
             </property>
             <property name="icon">
-             <iconset resource="icon.qrc">
+             <iconset>
               <normaloff>:/icon/E:/ENTERTAIN/Picture/icon/sawtooth2.png</normaloff>:/icon/E:/ENTERTAIN/Picture/icon/sawtooth2.png</iconset>
             </property>
             <property name="iconSize">
@@ -960,7 +960,7 @@
              <string/>
             </property>
             <property name="icon">
-             <iconset resource="icon.qrc">
+             <iconset>
               <normaloff>:/icon/E:/ENTERTAIN/Picture/icon/moon2.png</normaloff>:/icon/E:/ENTERTAIN/Picture/icon/moon2.png</iconset>
             </property>
             <property name="iconSize">
@@ -983,7 +983,7 @@
              <string/>
             </property>
             <property name="icon">
-             <iconset resource="icon.qrc">
+             <iconset>
               <normaloff>:/icon/E:/ENTERTAIN/Picture/icon/sawtooth3.png</normaloff>:/icon/E:/ENTERTAIN/Picture/icon/sawtooth3.png</iconset>
             </property>
             <property name="iconSize">
@@ -1036,15 +1036,13 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>989</width>
+     <width>996</width>
      <height>23</height>
     </rect>
    </property>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
  </widget>
- <resources>
-  <include location="icon.qrc"/>
- </resources>
+ <resources/>
  <connections/>
 </ui>

@@ -144,8 +144,17 @@ void MainWindow::on_simulateBtn_clicked()
         sifangduizhe(srcImg);
     else if(currentMode == 2)
         erfangkaizhe(srcImg);
+    else if(currentMode == 3)//八折
+        rofold(srcImg,8);
+    else if(currentMode == 4)//五折
+        rofold(srcImg,10);
+    else if(currentMode == 5)//N
+        rofold(srcImg,bkgitem->getFoldNum());
     else
-        qDebug()<<"无效模式";
+    {
+        qDebug()<<"无效模式：mode="<<currentMode;
+    }
+
 }
 
 void MainWindow::sifangduizhe(const Mat &shuru)
@@ -174,6 +183,66 @@ void MainWindow::erfangkaizhe(const Mat &shuru)
     hconcat(duizhe3, combine2, combine3);
     namedWindow("二方连续开折",WINDOW_AUTOSIZE);
     imshow("二方连续对折", combine3);
+}
+
+/*
+Rotatefold mixall leftfold rightfoldupfold downfold 为折叠最基本的算法，
+功能分别为旋转  叠加  左折 右折 上折 下折
+*/
+//Rotatefold（原始图像，旋转角度），输出旋转后图像
+Mat MainWindow::Rotatefold(const Mat &_input, double angle)
+{
+    Point center = Point(0, _input.rows);
+    Mat rot_mat = getRotationMatrix2D(center, angle, 1);
+    Mat _output;
+    int h = _input.rows;
+    int w = _input.cols;
+    double cos = abs(rot_mat.at<double>(0, 0));
+    double sin = abs(rot_mat.at<double>(0, 1));
+
+    int new_w = w * 3;
+    int new_h = h * 3;
+    rot_mat.at<double>(0, 2) += (new_w / 2.0);
+    rot_mat.at<double>(1, 2) += (new_h / 2.0 - h);
+    warpAffine(_input, _output, rot_mat, Size(new_w, new_h), INTER_LINEAR, 0, Scalar(255, 255, 255));
+
+    return _output;
+}
+
+/*
+    mixall(图像1，图像2),图像1, 2尺寸相同，
+    输出图像2叠加到图像1上的图像，
+    叠加算法为：白色与白色叠加为白色，其他色与白色叠加为其他色
+*/
+Mat MainWindow::mixall(const Mat &image1, const Mat &image2)
+{
+    Mat _output = image1.clone();
+        for (int i = 0; i < image1.cols; i++)
+        {
+            for (int j = 0; j < image1.rows; j++)
+            {
+                Vec3b bgr = image1.at<Vec3b>(i, j);
+                Vec3b bgr2 = image2.at<Vec3b>(i, j);
+                if (bgr[0] + bgr[1] + bgr[2] >= 700)
+                {
+                    bgr[0] = bgr2[0];
+                    bgr[1] = bgr2[1];
+                    bgr[2] = bgr2[2];
+                }
+                _output.at<Vec3b>(i, j) = bgr;
+            }
+        }
+        return _output;
+}
+
+void MainWindow::rofold(const Mat &_input, int n)
+{
+    double angel = 360.0 / n;
+    Mat _output = Rotatefold(_input, 0);
+    for (int i = 1; i < n; i++) {
+        _output = mixall(_output, Rotatefold(_input, angel * i));
+    }
+    imshow("back1", _output);
 }
 
 /**
@@ -253,7 +322,6 @@ void MainWindow::on_foldNumBox_valueChanged(int arg1)
     bkgitem->setNFoldNum(arg1);
 }
 
-
 void MainWindow::on_curveBtn_clicked()
 {
     qDebug()<<"this is curve pattern";
@@ -321,7 +389,7 @@ void MainWindow::on_sawtooth2Btn_clicked()
 void MainWindow::on_moon2Btn_clicked()
 {
     qDebug()<<"this is moon2 pattern";
-    svgItem* curve = new svgItem(15);
+    svgItem* curve = new svgItem(17);
     connect(curve,SIGNAL(sync(int,QString)),this,SLOT(syncProperty(int,QString)));
     scene->addItem(curve);
 }
@@ -329,7 +397,7 @@ void MainWindow::on_moon2Btn_clicked()
 void MainWindow::on_sawtooth3Btn_clicked()
 {
     qDebug()<<"this is sawtooth3 pattern";
-    svgItem* curve = new svgItem(16);
+    svgItem* curve = new svgItem(18);
     connect(curve,SIGNAL(sync(int,QString)),this,SLOT(syncProperty(int,QString)));
     scene->addItem(curve);
 }

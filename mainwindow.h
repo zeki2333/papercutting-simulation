@@ -88,6 +88,9 @@ private:
     QGraphicsRectItem *rectbg;
     void sifangduizhe(const Mat& shuru);
     void erfangkaizhe(const Mat& shuru);
+    Mat Rotatefold(const Mat & _input, double angle);
+    Mat mixall(const Mat& image1, const Mat& image2);
+    void rofold(const Mat& _input, int n);
     void imageAdjust(const Mat& shuru,Mat& shuchu);
     BkgItem *bkgitem;
 

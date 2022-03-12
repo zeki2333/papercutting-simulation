@@ -108,6 +108,11 @@ int BkgItem::getMode()
     return m_mode;
 }
 
+int BkgItem::getFoldNum()
+{
+    return m_N;
+}
+
 void BkgItem::mouseReleaseEvent(QGraphicsSceneMouseEvent *event)
 {
     Q_UNUSED(event);
@@ -168,11 +173,12 @@ void BkgItem::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, Q
     }
     else if(m_mode == Nzhe)
     {
+        qDebug()<<rect.topLeft().rx()<<" "<<rect.topLeft().ry();
         QPainterPath NzhePath;
-        NzhePath.moveTo(rect.bottomRight());
-        NzhePath.lineTo(rect.topRight());
-        NzhePath.arcTo(rect.topLeft().rx(),rect.topLeft().ry(),2*rect.width(),2*rect.height(),90,360/m_N);
-        NzhePath.lineTo(rect.bottomRight());
+        NzhePath.moveTo(rect.bottomLeft());
+        NzhePath.lineTo(rect.topLeft());
+        NzhePath.arcTo(rect.topLeft().rx()-rect.width(),rect.topLeft().ry(),2*rect.width(),2*rect.height(),90,-360/m_N);
+        NzhePath.lineTo(rect.bottomLeft());
         painter->fillPath(NzhePath,brush);
     }
     else
