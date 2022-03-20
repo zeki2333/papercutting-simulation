@@ -222,6 +222,9 @@ QComboBox QAbstractItemView {
 QLabel, QCheckBox, QRadioButton {
     color: #272727;
 }
+QLabel:hover {
+    border:2px solid darkgray;
+}
 QCheckBox {
     padding: 2px;
 }

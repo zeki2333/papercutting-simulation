@@ -9,6 +9,14 @@
         <file>QSS_IMG/go-previous-symbolic.symbolic.png</file>
         <file>QSS_IMG/go-up-symbolic.symbolic.png</file>
         <file>QSS_IMG/object-select-symbolic.symbolic.png</file>
+        <file>icon/attr.png</file>
+        <file>icon/create.png</file>
+        <file>icon/export.png</file>
+        <file>icon/foldmode.png</file>
+        <file>icon/patternlib.png</file>
+        <file>icon/preset.png</file>
+        <file>icon/simulate.png</file>
+        <file>icon/works.png</file>
     </qresource>
     <qresource prefix="/new/qss">
         <file>MacOS.qss</file>

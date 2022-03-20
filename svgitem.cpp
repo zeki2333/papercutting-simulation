@@ -114,7 +114,10 @@ svgItem::svgItem(int id)
     this->setFlag(QGraphicsItem::ItemIsSelectable);
     initIcon();
 
-    m_size = QSize(m_render->boundsOnElement("svg").width(),m_render->boundsOnElement("svg").height());
+    qDebug()<<m_render->boundsOnElement("path").width()<<"\t"<<m_render->boundsOnElement("path").height();
+    int svgWidth = doc.elementsByTagName("svg").at(0).toElement().attribute("width").toInt()/3;
+    int svgHeight = doc.elementsByTagName("svg").at(0).toElement().attribute("height").toInt()/3;
+    m_size = QSize(svgWidth,svgHeight);
     this->update();
 }
 

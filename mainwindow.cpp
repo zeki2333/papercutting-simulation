@@ -6,7 +6,7 @@ MainWindow::MainWindow(QWidget *parent)
     , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
-    connect(ui->pushButton_2,SIGNAL(clicked()),this,SLOT(generateSVG()));
+    connect(ui->createBtn,SIGNAL(clicked()),this,SLOT(generateSVG()));
 
     ui->graphicsView->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
     ui->graphicsView->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
@@ -21,12 +21,12 @@ MainWindow::MainWindow(QWidget *parent)
 
     for(int i=0;i<16;i++){
         selectPatternButton* btn = new selectPatternButton(i+1);
-//        btn->setIcon(QIcon(":/new/btn/round.png"));
+        btn->setIcon(QIcon(":/new/btn/round.png"));
         btn->setIcon(getPicFromDataBase(i+1));
         btn->setStyleSheet("QPushButton{background:transparent;border-width:0px;}");
         btn->setIconSize(QSize(60,60));
         connect(btn,SIGNAL(clicked()),this,SLOT(slotButtonClicked()));
-        ui->gridLayout->addWidget(btn,i/4,i%4,1,1,Qt::AlignCenter);
+        ui->gridLayout_4->addWidget(btn,i/4,i%4,1,1,Qt::AlignCenter);
     }
 }
 
