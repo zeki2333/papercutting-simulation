@@ -1,18 +1,18 @@
-#include "selectpatternbutton.h"
+//#include "selectpatternbutton.h"
 
 
-selectPatternButton::selectPatternButton(int value,QWidget* parent)
-{
-    this->number = value;
-    btn = new QPushButton(parent);
-}
+//selectPatternButton::selectPatternButton(int value,QWidget* parent)
+//{
+//    this->number = value;
+//    btn = new QPushButton(parent);
+//}
 
-int selectPatternButton::getNumber() const
-{
-    return number;
-}
+//int selectPatternButton::getNumber() const
+//{
+//    return number;
+//}
 
-void selectPatternButton::setNumber(int value)
-{
-    number = value;
-}
+//void selectPatternButton::setNumber(int value)
+//{
+//    number = value;
+//}

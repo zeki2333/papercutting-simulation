@@ -32,5 +32,6 @@ private:
 public slots:
     void slotButtonClicked();
     void generateSVG();
+    void changeClassicPage();
 };
 #endif // MAINWINDOW_H

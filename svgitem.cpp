@@ -93,7 +93,6 @@ svgItem::svgItem(int id)
             doc.setContent(arr);
             m_render->load(arr);
         }
-
     }
     else
     {
