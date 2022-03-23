@@ -1,1 +1,2 @@
-simulation_k
+# 折叠剪纸智能仿真平台
+master分支目前正在维护
